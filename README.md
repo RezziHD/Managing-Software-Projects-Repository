@@ -5,4 +5,4 @@ Its going to be quite extensive so we'll probably need people working on little 
 
 # Setup
 PHP 8.2
-XAMPP server (Here)[https://www.apachefriends.org/download.html]
+XAMPP server [Download here](https://www.apachefriends.org/download.html)
