@@ -45,21 +45,21 @@
     <!--This is the form-->
     <div class="container">
         <h1>Add New Member</h1>
-        <form>
+        <form class="row g-3 needs-validation" novalidate>
             <!--This is a to have two fields together-->
             <div class="row">
                 <div class="col">
                     <!--This is a text field-->
                     <div class="mb-3">
                         <label for="FirstName" class="form-label">Given Name</label>
-                        <input type="text" class="form-control" id="FirstName">
+                        <input type="text" class="form-control" id="FirstName" required>
                     </div>
                 </div>
                 <div class="col">
                     <!--This is a text field-->
                     <div class="mb-3">
                         <label for="MiddleName" class="form-label">Middle Name</label>
-                        <input type="text" class="form-control" id="MiddleName">
+                        <input type="text" class="form-control" id="MiddleName" required>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="LastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="LastName">
+                        <input type="text" class="form-control" id="LastName" required>
                     </div>
                 </div>
                 <div class="col">
@@ -88,7 +88,7 @@
                 <!--This is a date field-->
                 <div class="mb-3">
                     <label for="StreetAddress" class="form-label">Street Address</label>
-                    <input type="text" class="form-control" id="StreetAddress">
+                    <input type="text" class="form-control" id="StreetAddress" required>
                 </div>
             </div>
             <div class="row">
@@ -96,20 +96,20 @@
                     <!--This is a text field-->
                     <div class="mb-3">
                         <label for="Suburb" class="form-label">Suburb</label>
-                        <input type="text" class="form-control" id="Suburb">
+                        <input type="text" class="form-control" id="Suburb" required>
                     </div>
                 </div>
                 <div class="col">
                     <!--This is a text field-->
                     <div class="mb-3">
                         <label for="Postcode" class="form-label">Postcode</label>
-                        <input type="text" class="form-control" id="Postcode">
+                        <input type="text" class="form-control" id="Postcode" required>
                     </div>
                 </div>
                 <div class="col">
                     <!--This is a text field-->
                     <label for="State" class="form-label">State</label>
-                    <select class="form-select" aria-label="Default select example" id="State">
+                    <select class="form-select" aria-label="Default select example" id="State" required>
                         <option selected>Select a State</option>
                         <option value="ACT">ACT</option>
                         <option value="NSW">NSW</option>
