@@ -13,18 +13,40 @@ document.getElementById("DOB").addEventListener("change", function () {
 });
 
 bootstrapValidate(
-  ["#FirstName", "#MiddleName", "#LastName", "#Suburb"],
-  "required:Please fill out this field|min:5:Enter at least 5 characters|max:25:Enter less than 25 characters"
-);
-bootstrapValidate(
-  ["#StreetAddress"],
-  "required:Please fill out this field|min:5:Enter at least 5 characters|max:40:Enter less than 40 characters"
-);
-bootstrapValidate(
-  ["#Email"],
-  "required:Please fill out this field|email:Please enter a valid email"
-);
+    ["#FirstName", "#MiddleName", "#LastName", "#Suburb"],
+    "required: Please commplete this field|min:5:Enter at least 5 characters|max:25:Enter less than 25 characters"
+  );
+  bootstrapValidate(
+    ["#StreetAddress"],
+    "required: Please commplete this field|min:5:Enter at least 5 characters|max:40:Enter less than 40 characters"
+  );
+  bootstrapValidate(
+    ["#Email"],
+    "required: Please commplete this field|email:Please enter a valid email"
+  );
 
-document.getElementById("memberaddform").addEventListener("submit", function(){
- 
-});
+ function validate(){
+    console.log("here");
+    var flag=true;
+    var inputs= Array.from(document.getElementsByTagName("input"));
+    //console.log(inputs);
+    for(let i=0; i<inputs.length; i++){
+        console.log(inputs[i]);
+        if(inputs[i].value=="" && inputs[i].type!="date"){
+            inputs[i].classList.add("is-invalid");
+            flag=false;
+        }
+    }
+    if(!flag){
+        document.getElementById("noteError").hidden=false;
+    }else{
+        document.getElementById("noteError").hidden=false;
+    }
+    var inputsInvalid = Array.from(document.forms["memberaddform"].getElementsByClassName("is-invalid"));
+    if(inputsInvalid.length>0){
+        flag=false;
+    }
+        return flag;
+}
+const form = document.getElementById("memberaddform");
+form.onsubmit=validate;
