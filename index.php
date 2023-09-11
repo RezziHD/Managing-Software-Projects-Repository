@@ -28,7 +28,7 @@
                             Member
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="pages/memberadd.html">Add New Member</a></li>
+                            <li><a class="dropdown-item" href="pages/memberadd.php">Add New Member</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
