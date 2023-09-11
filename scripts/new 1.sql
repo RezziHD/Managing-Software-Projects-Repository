@@ -10,9 +10,9 @@ CREATE TABLE Address (
 
 CREATE TABLE Staff (
 	`StaffID` int AUTO_INCREMENT NOT NULL,
-	`First Name` varchar(30) NOT NULL,
-	`Middle Name` varchar(30) NOT NULL,
-	`Last Name` varchar(30) NOT NULL,
+	`FirstName` varchar(30) NOT NULL,
+	`MiddleName` varchar(30) NOT NULL,
+	`LastName` varchar(30) NOT NULL,
 	`DateofBirth` date NOT NULL,
 	`AddressID` int NOT NULL,
 	`StaffAcID` int NOT NULL,
@@ -31,19 +31,19 @@ CREATE TABLE Staff_Accountability (
 	`Date` datetime NOT NULL,
 	primary key(`StaffAcID`)
 );
-	
+
 
 ALTER TABLE Staff ADD CONSTRAINT staff_access_id
     FOREIGN KEY (StaffAcID)
     REFERENCES Staff_Accountability (StaffAcID);
-	
-	
+
+
 
 CREATE TABLE Member (
 	`MemberID` int AUTO_INCREMENT NOT NULL,
-	`First Name` varchar(30) NOT NULL,
-	`Middle Name` varchar(30) NOT NULL,
-	`Last Name` varchar(30) NOT NULL,
+	`FirstName` varchar(30) NOT NULL,
+	`MiddleName` varchar(30) NOT NULL,
+	`LastName` varchar(30) NOT NULL,
 	`DateofBirth` date NOT NULL,
 	`AddressID` int NOT NULL,
 	`StaffAcID` int NOT NULL,
@@ -53,8 +53,8 @@ CREATE TABLE Member (
 ALTER TABLE Member ADD CONSTRAINT member_access_id
     FOREIGN KEY (StaffAcID)
     REFERENCES Staff_Accountability (StaffAcID);
-	
-	
+
+
 CREATE TABLE Sale (
 	`SaleID` int AUTO_INCREMENT NOT NULL,
 	`MemberID` int NOT NULL,
@@ -66,13 +66,13 @@ CREATE TABLE Sale (
 ALTER TABLE Sale ADD CONSTRAINT member_sale_id
     FOREIGN KEY (MemberID)
     REFERENCES Member (MemberID);
-	
+
 ALTER TABLE Sale ADD CONSTRAINT staff_sale_access_id
     FOREIGN KEY (StaffAcID)
     REFERENCES Staff_Accountability (StaffAcID);
-	
-	
-	
+
+
+
 CREATE TABLE Sale_Line (
 	`SaleID` int AUTO_INCREMENT NOT NULL,
 	`LineNumber` int NOT NULL,
@@ -94,9 +94,7 @@ CREATE TABLE Product (
 ALTER TABLE Sale_Line ADD CONSTRAINT product_sale_id
     FOREIGN KEY (ProductID)
     REFERENCES Product (ProductID);
-	
+
 ALTER TABLE Product ADD CONSTRAINT staff_new_access_id
     FOREIGN KEY (StaffAcID)
     REFERENCES Staff_Accountability (StaffAcID);
-	
-	
