@@ -29,9 +29,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Add New Member</a></li>
-                            <li><a class="dropdown-item" href="#">Add New Staff Member</a></li>
-                            <li><a class="dropdown-item" href="#">Add New Sales</a></li>
-                            <li><a class="dropdown-item" href="#">Add New Product</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -125,7 +122,6 @@
                     </select>
                 </div>
             </div>
-
             <!--This is a button field-->
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
