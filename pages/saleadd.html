@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Add Member</title>
+    <title>Add Sale</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -25,7 +25,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Member
+                            Sales
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Add New Member</a></li>
@@ -47,89 +47,42 @@
     </nav>
     <!--This is the form-->
     <div class="container">
-        <h1>Add New Member</h1>
+        <h1>Add New Sales</h1>
         <form>
             <!--This is a to have two fields together-->
             <div class="row">
                 <div class="col">
                     <!--This is a text field-->
-                    <div class="mb-3">
-                        <label for="FirstName" class="form-label">Given Name</label>
-                        <input type="text" class="form-control" id="FirstName">
-                    </div>
-                </div>
-                <div class="col">
-                    <!--This is a text field-->
-                    <div class="mb-3">
-                        <label for="MiddleName" class="form-label">Middle Name</label>
-                        <input type="text" class="form-control" id="MiddleName">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="LastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="LastName">
-                    </div>
-                </div>
-                <div class="col">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <!--This is a date field-->
-                    <div class="mb-3">
-                        <label for="DOB" class="form-label">Date Of Birth</label>
-                        <input type="date" class="form-control" id="DOB">
-                    </div>
-                </div>
-                <div class="col">
-                </div>
-            </div>
-            <div class="row">
-                <!--This is a date field-->
-                <div class="mb-3">
-                    <label for="StreetAddress" class="form-label">Street Address</label>
-                    <input type="text" class="form-control" id="StreetAddress">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <!--This is a text field-->
-                    <div class="mb-3">
-                        <label for="Suburb" class="form-label">Suburb</label>
-                        <input type="text" class="form-control" id="Suburb">
-                    </div>
-                </div>
-                <div class="col">
-                    <!--This is a text field-->
-                    <div class="mb-3">
-                        <label for="Postcode" class="form-label">Postcode</label>
-                        <input type="text" class="form-control" id="Postcode">
-                    </div>
-                </div>
-                <div class="col">
-                    <!--This is a text field-->
-                    <label for="State" class="form-label">State</label>
-                    <select class="form-select" aria-label="Default select example" id="State">
-                        <option selected>Select a State</option>
-                        <option value="ACT">ACT</option>
-                        <option value="NSW">NSW</option>
-                        <option value="NT">NT</option>
-                        <option value="QLD">QLD</option>
-                        <option value="SA">SA</option>
-                        <option value="TAS">TAS</option>
-                        <option value="VIC">VIC</option>
-                        <option value="WA">WA</option>
+                    <label for="Staff Member" class="form-label">Staff Member</label>
+                    <select class="form-select" aria-label="Default select example" id="Staff Member">
+                        <option selected>Select a Staff Member</option>
+                        <!--This is where all staff members and their ID's go-->
                     </select>
                 </div>
             </div>
+           
+            <div class="row">
+                <div class="col">
+                    <!--This is a text field-->
+                    <div class="mb-3">
+                        <label for="Product" class="form-label">Product</label>
+                        <input type="text" class="form-control" id="Product">
+                    </div>
+                </div>
+                <div class="col">
+                    <!--This is a text field-->
+                    <div class="mb-3">
+                        <label for="Quantity" class="form-label">Quantity</label>
+                        <input type="text" class="form-control" id="Quantity">
+                    </div>
+                </div>
+            </div>
 
-            <!--This is a button field-->
+             <!--This is a button field-->
+            <button type="submit" class="btn btn-primary">Add another product</button>
+
             <button type="submit" class="btn btn-primary">Save</button>
-        </form>
-    </div>
+         </form>
 
     <footer></footer>
 </body>
