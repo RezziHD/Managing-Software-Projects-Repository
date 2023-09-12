@@ -34,6 +34,12 @@ class Staff extends Entity
         'password' => true,
     ];
 
+    protected function _setPassword(string $password)
+    {
+        $hasher = new DefaultPasswordHasher();
+        return $hasher->hash($password);
+    }
+
     /**
      * Fields that are excluded from JSON versions of the entity.
      *
@@ -42,10 +48,4 @@ class Staff extends Entity
     protected $_hidden = [
         'password',
     ];
-
-    protected function _setPassword(string $password)
-    {
-        $hasher = new DefaultPasswordHasher();
-        return $hasher->hash($password);
-    }
 }

@@ -108,7 +108,7 @@ class StaffController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['login','add']);
+        $this->Authentication->allowUnauthenticated(['login', 'add']);
     }
 
     public function login()
@@ -116,13 +116,14 @@ class StaffController extends AppController
         $result = $this->Authentication->getResult();
         // If the user is logged in send them away.
         if ($result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/login';
+            $target = $this->Authentication->getLoginRedirect() ?? '/add';
             return $this->redirect($target);
         }
         if ($this->request->is('post')) {
             $this->Flash->error('Invalid username or password');
         }
     }
+
     public function logout()
     {
         $this->Authentication->logout();
