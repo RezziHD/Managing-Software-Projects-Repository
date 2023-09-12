@@ -143,47 +143,4 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
         // Load more plugins here
     }
-
-    /**
-     * Returns a service provider instance.
-     *
-     * @param \Psr\Http\Message\ServerRequestInterface $request Request
-     * @return \Authentication\AuthenticationServiceInterface
-     */
-    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
-    {
-        $service = new AuthenticationService();
-
-        // Define where users should be redirected to when they are not authenticated
-        $service->setConfig([
-            'unauthenticatedRedirect' => Router::url([
-                'prefix' => false,
-                'plugin' => null,
-                'controller' => 'Staff',
-                'action' => 'login',
-            ]),
-            'queryParam' => 'redirect',
-        ]);
-
-        $fields = [
-            IdentifierInterface::CREDENTIAL_USERNAME => 'email',
-            IdentifierInterface::CREDENTIAL_PASSWORD => 'password'
-        ];
-        // Load the authenticators. Session should be first.
-        $service->loadAuthenticator('Authentication.Session');
-        $service->loadAuthenticator('Authentication.Form', [
-            'fields' => $fields,
-            'loginUrl' => Router::url([
-                'prefix' => false,
-                'plugin' => null,
-                'controller' => 'Staff',
-                'action' => 'login',
-            ]),
-        ]);
-
-        // Load identifiers
-        $service->loadIdentifier('Authentication.Password', ['fields' => ['username' => 'email', 'password' => 'password',],'resolver' => ['className' => 'Authentication.Orm', 'userModel' => 'Staff']], compact('fields'));
-
-        return $service;
-    }
 }
