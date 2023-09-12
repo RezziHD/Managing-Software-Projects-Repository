@@ -5,8 +5,7 @@ CREATE TABLE Address (
 	`Postcode` char(4) NOT NULL,
 	`State` char(3) NOT NULL,
 	primary key(`AddressID`)
-);
-
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 CREATE TABLE Staff (
 	`StaffID` int AUTO_INCREMENT NOT NULL,
@@ -16,28 +15,26 @@ CREATE TABLE Staff (
 	`DateofBirth` date NOT NULL,
 	`AddressID` int NOT NULL,
 	`StaffAcID` int NOT NULL,
-	`Role` varchar(15) NOT NULL,
 	`Password` varchar(30) NOT NULL,
 	primary key(`StaffID`)
-);
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
-ALTER TABLE Staff ADD CONSTRAINT address_address_ID
-    FOREIGN KEY (AddressID)
-    REFERENCES Address (AddressID);
+ALTER TABLE
+	Staff
+ADD
+	CONSTRAINT address_address_ID FOREIGN KEY (AddressID) REFERENCES Address (AddressID);
 
 CREATE TABLE Staff_Accountability (
 	`StaffAcID` int AUTO_INCREMENT NOT NULL,
 	`StaffID` int NOT NULL,
 	`Date` datetime NOT NULL,
 	primary key(`StaffAcID`)
-);
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
-
-ALTER TABLE Staff ADD CONSTRAINT staff_access_id
-    FOREIGN KEY (StaffAcID)
-    REFERENCES Staff_Accountability (StaffAcID);
-
-
+ALTER TABLE
+	Staff
+ADD
+	CONSTRAINT staff_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
 
 CREATE TABLE Member (
 	`MemberID` int AUTO_INCREMENT NOT NULL,
@@ -48,12 +45,12 @@ CREATE TABLE Member (
 	`AddressID` int NOT NULL,
 	`StaffAcID` int NOT NULL,
 	primary key(`MemberID`)
-);
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
-ALTER TABLE Member ADD CONSTRAINT member_access_id
-    FOREIGN KEY (StaffAcID)
-    REFERENCES Staff_Accountability (StaffAcID);
-
+ALTER TABLE
+	Member
+ADD
+	CONSTRAINT member_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
 
 CREATE TABLE Sale (
 	`SaleID` int AUTO_INCREMENT NOT NULL,
@@ -61,25 +58,25 @@ CREATE TABLE Sale (
 	`Date` date NOT NULL,
 	`StaffAcID` int NOT NULL,
 	primary key(`SaleID`)
-);
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
-ALTER TABLE Sale ADD CONSTRAINT member_sale_id
-    FOREIGN KEY (MemberID)
-    REFERENCES Member (MemberID);
+ALTER TABLE
+	Sale
+ADD
+	CONSTRAINT member_sale_id FOREIGN KEY (MemberID) REFERENCES Member (MemberID);
 
-ALTER TABLE Sale ADD CONSTRAINT staff_sale_access_id
-    FOREIGN KEY (StaffAcID)
-    REFERENCES Staff_Accountability (StaffAcID);
-
-
+ALTER TABLE
+	Sale
+ADD
+	CONSTRAINT staff_sale_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
 
 CREATE TABLE Sale_Line (
 	`SaleID` int AUTO_INCREMENT NOT NULL,
 	`LineNumber` int NOT NULL,
 	`ProductID` int NOT NULL,
 	`Quantity` int NOT NULL,
-	primary key(`SaleID`,`LineNumber`)
-);
+	primary key(`SaleID`, `LineNumber`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 CREATE TABLE Product (
 	`ProductID` int AUTO_INCREMENT NOT NULL,
@@ -89,12 +86,36 @@ CREATE TABLE Product (
 	`Description` text NOT NULL,
 	`StaffAcID` int NOT NULL,
 	primary key(`ProductID`)
-);
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
-ALTER TABLE Sale_Line ADD CONSTRAINT product_sale_id
-    FOREIGN KEY (ProductID)
-    REFERENCES Product (ProductID);
+ALTER TABLE
+	Sale_Line
+ADD
+	CONSTRAINT product_sale_id FOREIGN KEY (ProductID) REFERENCES Product (ProductID);
 
-ALTER TABLE Product ADD CONSTRAINT staff_new_access_id
-    FOREIGN KEY (StaffAcID)
-    REFERENCES Staff_Accountability (StaffAcID);
+ALTER TABLE
+	Product
+ADD
+	CONSTRAINT staff_new_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
+
+CREATE TABLE Roles (
+	`RoleID` int(11) NOT NULL,
+	`RoleName` varchar(50) DEFAULT NULL,
+	`Description` varchar(255) DEFAULT NULL,
+	primary key (`RoleID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+
+CREATE TABLE Staff_roles (
+	`StaffID` int(11) NOT NULL,
+	`RoleID` int(11) NOT NULL primary key(`StaffID`, `RoleID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE
+	Staff_roles
+ADD
+	CONSTRAINT staff_roles_id FOREIGN KEY (StaffID) REFERENCES Staff (StaffID);
+
+ALTER TABLE
+	Staff_roles
+ADD
+	CONSTRAINT staff_roles_roles_id FOREIGN KEY (RoleID) REFERENCES Role (RoleID);
