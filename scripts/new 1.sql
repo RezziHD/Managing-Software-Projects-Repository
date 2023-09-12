@@ -98,7 +98,7 @@ ALTER TABLE
 ADD
 	CONSTRAINT staff_new_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
 
-CREATE TABLE Roles (
+CREATE TABLE Role (
 	`RoleID` int(11) NOT NULL,
 	`RoleName` varchar(50) DEFAULT NULL,
 	`Description` varchar(255) DEFAULT NULL,
@@ -107,7 +107,8 @@ CREATE TABLE Roles (
 
 CREATE TABLE Staff_roles (
 	`StaffID` int(11) NOT NULL,
-	`RoleID` int(11) NOT NULL primary key(`StaffID`, `RoleID`)
+	`RoleID` int(11) NOT NULL, 
+	primary key(`StaffID`, `RoleID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 ALTER TABLE
