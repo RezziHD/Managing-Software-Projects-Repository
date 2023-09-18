@@ -5,7 +5,11 @@
 ## Setup
 ```powershell
 git clone https://github.com/RezziHD/Managing-Software-Projects-Repository
+```
+```powershell
 cd Managing-Software-Projects-Repository
+```
+```powershell
 composer install
 ```
 ## Configuration
