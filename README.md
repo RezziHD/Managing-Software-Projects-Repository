@@ -2,9 +2,6 @@
 
 1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
 
-If Composer is installed globally, run
-
-
 ## Setup
 ```powershell
 git clone https://github.com/RezziHD/Managing-Software-Projects-Repository
