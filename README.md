@@ -1,15 +1,16 @@
 ## Installation
 
 1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
 
 If Composer is installed globally, run
 
+
+## Setup
 ```powershell
+git clone https://github.com/RezziHD/Managing-Software-Projects-Repository
+cd Managing-Software-Projects-Repository
 composer install
 ```
-## Setup
-
 ## Configuration
 
 Create your own `config/app_local.php` from `config/app_local.example.php`
