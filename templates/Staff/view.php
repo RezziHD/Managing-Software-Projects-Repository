@@ -19,24 +19,40 @@
             <h3><?= h($staff->staffID) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Firstname') ?></th>
-                    <td><?= h($staff->firstname) ?></td>
+                    <th><?= __('FirstName') ?></th>
+                    <td><?= h($staff->FirstName) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Lastname') ?></th>
-                    <td><?= h($staff->lastname) ?></td>
+                    <th><?= __('MiddleName') ?></th>
+                    <td><?= h($staff->MiddleName) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('LastName') ?></th>
+                    <td><?= h($staff->LastName) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Password') ?></th>
+                    <td><?= h($staff->Password) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Email') ?></th>
-                    <td><?= h($staff->email) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Phone') ?></th>
-                    <td><?= h($staff->phone) ?></td>
+                    <td><?= h($staff->Email) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('StaffID') ?></th>
-                    <td><?= $this->Number->format($staff->staffID) ?></td>
+                    <td><?= $this->Number->format($staff->StaffID) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('AddressID') ?></th>
+                    <td><?= $this->Number->format($staff->AddressID) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('StaffAcID') ?></th>
+                    <td><?= $this->Number->format($staff->StaffAcID) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('DateofBirth') ?></th>
+                    <td><?= h($staff->DateofBirth) ?></td>
                 </tr>
             </table>
         </div>

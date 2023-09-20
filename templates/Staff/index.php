@@ -11,22 +11,30 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('staffID') ?></th>
-                    <th><?= $this->Paginator->sort('firstname') ?></th>
-                    <th><?= $this->Paginator->sort('lastname') ?></th>
-                    <th><?= $this->Paginator->sort('email') ?></th>
-                    <th><?= $this->Paginator->sort('phone') ?></th>
+                    <th><?= $this->Paginator->sort('StaffID') ?></th>
+                    <th><?= $this->Paginator->sort('FirstName') ?></th>
+                    <th><?= $this->Paginator->sort('MiddleName') ?></th>
+                    <th><?= $this->Paginator->sort('LastName') ?></th>
+                    <th><?= $this->Paginator->sort('DateofBirth') ?></th>
+                    <th><?= $this->Paginator->sort('AddressID') ?></th>
+                    <th><?= $this->Paginator->sort('StaffAcID') ?></th>
+                    <th><?= $this->Paginator->sort('Password') ?></th>
+                    <th><?= $this->Paginator->sort('Email') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($staff as $staff): ?>
                 <tr>
-                    <td><?= $this->Number->format($staff->staffID) ?></td>
-                    <td><?= h($staff->firstname) ?></td>
-                    <td><?= h($staff->lastname) ?></td>
-                    <td><?= h($staff->email) ?></td>
-                    <td><?= h($staff->phone) ?></td>
+                    <td><?= $this->Number->format($staff->StaffID) ?></td>
+                    <td><?= h($staff->FirstName) ?></td>
+                    <td><?= h($staff->MiddleName) ?></td>
+                    <td><?= h($staff->LastName) ?></td>
+                    <td><?= h($staff->DateofBirth) ?></td>
+                    <td><?= $this->Number->format($staff->AddressID) ?></td>
+                    <td><?= $this->Number->format($staff->StaffAcID) ?></td>
+                    <td><?= h($staff->Password) ?></td>
+                    <td><?= h($staff->Email) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $staff->staffID]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $staff->staffID]) ?>

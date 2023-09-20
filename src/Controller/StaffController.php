@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -103,7 +102,7 @@ class StaffController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
+    
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
