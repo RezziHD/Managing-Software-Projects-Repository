@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <th><?= __('StaffAcID') ?></th>
-                    <td><?= $this->Number->format($staff->StaffAcID) ?></td>
+                    <td><?= $staff->StaffAcID === null ? '' : $this->Number->format($staff->StaffAcID) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('DateofBirth') ?></th>

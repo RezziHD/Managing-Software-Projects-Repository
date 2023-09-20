@@ -32,7 +32,7 @@
                     <td><?= h($staff->LastName) ?></td>
                     <td><?= h($staff->DateofBirth) ?></td>
                     <td><?= $this->Number->format($staff->AddressID) ?></td>
-                    <td><?= $this->Number->format($staff->StaffAcID) ?></td>
+                    <td><?= $staff->StaffAcID === null ? '' : $this->Number->format($staff->StaffAcID) ?></td>
                     <td><?= h($staff->Password) ?></td>
                     <td><?= h($staff->Email) ?></td>
                     <td class="actions">

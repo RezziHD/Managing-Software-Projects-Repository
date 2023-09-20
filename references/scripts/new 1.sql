@@ -126,6 +126,7 @@ ADD
 ALTER TABLE `staff` ADD `Email` VARCHAR(50) NULL DEFAULT NULL ;
 ALTER TABLE `member` ADD `Email` VARCHAR(50) NULL DEFAULT NULL ;
 ALTER TABLE `staff` CHANGE `StaffAcID` `StaffAcID` INT(11) NULL;
+ALTER TABLE `staff` CHANGE `Password` `Password` VARCHAR(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
 
 INSERT INTO `role` (`RoleID`, `RoleName`, `Description`) VALUES ('1', 'Admin', 'Admin Description'), ('2', 'Staff', 'Staff Description');
 INSERT INTO `address` (`StreetAddress`, `Suburb`, `Postcode`, `State`) VALUES ( '2 addrees street', 'suburb', '0000', 'STA');
