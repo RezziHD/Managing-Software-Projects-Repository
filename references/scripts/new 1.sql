@@ -125,3 +125,8 @@ ADD
 	
 ALTER TABLE `staff` ADD `Email` VARCHAR(50) NULL DEFAULT NULL ;
 ALTER TABLE `member` ADD `Email` VARCHAR(50) NULL DEFAULT NULL ;
+ALTER TABLE `staff` CHANGE `StaffAcID` `StaffAcID` INT(11) NULL;
+
+INSERT INTO `role` (`RoleID`, `RoleName`, `Description`) VALUES ('1', 'Admin', 'Admin Description'), ('2', 'Staff', 'Staff Description');
+INSERT INTO `address` (`StreetAddress`, `Suburb`, `Postcode`, `State`) VALUES ( '2 addrees street', 'suburb', '0000', 'STA');
+INSERT INTO `staff` (`StaffID`, `FirstName`, `MiddleName`, `LastName`, `DateofBirth`, `AddressID`, `StaffAcID`, `Password`, `Email`) VALUES (NULL, 'Admin fName', 'Admin mName', 'Admin lName', '1995-01-01', '1', NULL, '123456pass', 'admin@gotogro.com.au');
