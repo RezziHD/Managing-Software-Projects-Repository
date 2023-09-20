@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 
 /**
  * Staff Entity
@@ -14,7 +15,7 @@ use Cake\ORM\Entity;
  * @property string $LastName
  * @property \Cake\I18n\FrozenDate $DateofBirth
  * @property int $AddressID
- * @property int $StaffAcID
+ * @property int|null $StaffAcID
  * @property string $Password
  * @property string|null $Email
  */
@@ -39,19 +40,9 @@ class Staff extends Entity
         'Password' => true,
         'Email' => true,
     ];
-    
-    protected function _setPassword(string $password)
+    /*protected function _setPassword(string $password)
     {
         $hasher = new DefaultPasswordHasher();
         return $hasher->hash($password);
-    }
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var array<string>
-     */
-    protected $_hidden = [
-        'password',
-    ];
+    }*/
 }

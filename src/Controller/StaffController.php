@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -102,20 +103,13 @@ class StaffController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    
-    public function beforeFilter(\Cake\Event\EventInterface $event)
-    {
-        parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['login', 'add']);
-    }
-
-    public function login()
+    /*public function login()
     {
         $result = $this->Authentication->getResult();
         // If the user is logged in send them away.
         if ($result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/add';
+            $target = $this->Authentication->getLoginRedirect() ?? '/view';
             return $this->redirect($target);
         }
         if ($this->request->is('post')) {
@@ -123,9 +117,16 @@ class StaffController extends AppController
         }
     }
 
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->Authentication->allowUnauthenticated(['login']);
+    }
+
     public function logout()
     {
         $this->Authentication->logout();
         return $this->redirect(['controller' => 'Staff', 'action' => 'login']);
-    }
+    }*/
 }

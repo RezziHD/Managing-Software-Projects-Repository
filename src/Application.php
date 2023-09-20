@@ -30,13 +30,15 @@ use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
-use Authentication\AuthenticationService;
+/*use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
+use Authentication\Identifier\AbstractIdentifier;
 use Authentication\Identifier\IdentifierInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Routing\Router;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ServerRequestInterface;*/
+
 
 /**
  * Application setup class.
@@ -44,7 +46,7 @@ use Psr\Http\Message\ServerRequestInterface;
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication implements AuthenticationServiceProviderInterface
+class Application extends BaseApplication //implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -55,7 +57,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     {
         // Call parent to load bootstrap from files.
         parent::bootstrap();
-        //$this->addPlugin('Authentication');
+        $this->addPlugin('Authentication');
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
         } else {
@@ -106,12 +108,13 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             // available as array through $request->getData()
             // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
             ->add(new BodyParserMiddleware())
-            ->add(new AuthenticationMiddleware($this))
+            //->add(new AuthenticationMiddleware($this))
             // Cross Site Request Forgery (CSRF) Protection Middleware
             // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
             ->add(new CsrfProtectionMiddleware([
                 'httponly' => true,
             ]));
+
 
         return $middlewareQueue;
     }
@@ -150,7 +153,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      * @param \Psr\Http\Message\ServerRequestInterface $request Request
      * @return \Authentication\AuthenticationServiceInterface
      */
-    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
+    /*public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
         $service = new AuthenticationService();
 
@@ -166,8 +169,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         ]);
 
         $fields = [
-            IdentifierInterface::CREDENTIAL_USERNAME => 'email',
-            IdentifierInterface::CREDENTIAL_PASSWORD => 'password'
+            AbstractIdentifier::CREDENTIAL_USERNAME => 'Email',
+            AbstractIdentifier::CREDENTIAL_PASSWORD => 'Password'
         ];
         // Load the authenticators. Session should be first.
         $service->loadAuthenticator('Authentication.Session');
@@ -184,14 +187,15 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         // Load identifiers
         $service->loadIdentifier('Authentication.Password', [
             'fields' => [
-                'username' => 'email',
-                'password' => 'password'
+                'username' => 'Email',
+                'password' => 'Password',
             ],
             'resolver' => [
                 'className' => 'Authentication.Orm',
                 'userModel' => 'Staff',
-            ]]);
+            ]
+        ]);
 
         return $service;
-    }
+    }*/
 }

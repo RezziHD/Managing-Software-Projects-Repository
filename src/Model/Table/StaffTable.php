@@ -80,19 +80,18 @@ class StaffTable extends Table
 
         $validator
             ->integer('StaffAcID')
-            ->requirePresence('StaffAcID', 'create')
-            ->notEmptyString('StaffAcID');
+            ->allowEmptyString('StaffAcID');
 
         $validator
             ->scalar('Password')
-            ->maxLength('Password', 30)
+            ->maxLength('Password', 60)
             ->requirePresence('Password', 'create')
             ->notEmptyString('Password');
 
         $validator
             ->scalar('Email')
             ->maxLength('Email', 50)
-            ->notEmptyString('Email');
+            ->allowEmptyString('Email');
 
         return $validator;
     }
