@@ -51,28 +51,48 @@ class StaffTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('firstname')
-            ->maxLength('firstname', 50)
-            ->allowEmptyString('firstname');
+            ->scalar('FirstName')
+            ->maxLength('FirstName', 30)
+            ->requirePresence('FirstName', 'create')
+            ->notEmptyString('FirstName');
 
         $validator
-            ->scalar('lastname')
-            ->maxLength('lastname', 50)
-            ->allowEmptyString('lastname');
+            ->scalar('MiddleName')
+            ->maxLength('MiddleName', 30)
+            ->requirePresence('MiddleName', 'create')
+            ->notEmptyString('MiddleName');
 
         $validator
-            ->email('email')
-            ->allowEmptyString('email');
+            ->scalar('LastName')
+            ->maxLength('LastName', 30)
+            ->requirePresence('LastName', 'create')
+            ->notEmptyString('LastName');
 
         $validator
-            ->scalar('phone')
-            ->maxLength('phone', 15)
-            ->allowEmptyString('phone');
+            ->date('DateofBirth')
+            ->requirePresence('DateofBirth', 'create')
+            ->notEmptyDate('DateofBirth');
 
         $validator
-            ->scalar('password')
-            ->maxLength('password', 255)
-            ->allowEmptyString('password');
+            ->integer('AddressID')
+            ->requirePresence('AddressID', 'create')
+            ->notEmptyString('AddressID');
+
+        $validator
+            ->integer('StaffAcID')
+            ->requirePresence('StaffAcID', 'create')
+            ->notEmptyString('StaffAcID');
+
+        $validator
+            ->scalar('Password')
+            ->maxLength('Password', 30)
+            ->requirePresence('Password', 'create')
+            ->notEmptyString('Password');
+
+        $validator
+            ->scalar('Email')
+            ->maxLength('Email', 50)
+            ->notEmptyString('Email');
 
         return $validator;
     }

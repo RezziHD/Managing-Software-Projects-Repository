@@ -4,16 +4,19 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use Authentication\PasswordHasher\DefaultPasswordHasher;
+
 /**
  * Staff Entity
  *
- * @property int $staffID
- * @property string|null $firstname
- * @property string|null $lastname
- * @property string|null $email
- * @property string|null $phone
- * @property string|null $password
+ * @property int $StaffID
+ * @property string $FirstName
+ * @property string $MiddleName
+ * @property string $LastName
+ * @property \Cake\I18n\FrozenDate $DateofBirth
+ * @property int $AddressID
+ * @property int $StaffAcID
+ * @property string $Password
+ * @property string|null $Email
  */
 class Staff extends Entity
 {
@@ -27,13 +30,16 @@ class Staff extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'firstname' => true,
-        'lastname' => true,
-        'email' => true,
-        'phone' => true,
-        'password' => true,
+        'FirstName' => true,
+        'MiddleName' => true,
+        'LastName' => true,
+        'DateofBirth' => true,
+        'AddressID' => true,
+        'StaffAcID' => true,
+        'Password' => true,
+        'Email' => true,
     ];
-
+    
     protected function _setPassword(string $password)
     {
         $hasher = new DefaultPasswordHasher();

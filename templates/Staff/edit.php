@@ -22,11 +22,15 @@
             <fieldset>
                 <legend><?= __('Edit Staff') ?></legend>
                 <?php
-                    echo $this->Form->control('firstname');
-                    echo $this->Form->control('lastname');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('phone');
-                    echo $this->Form->control('password');
+                    echo $this->Form->control('StaffID');
+                    echo $this->Form->control('FirstName');
+                    echo $this->Form->control('MiddleName');
+                    echo $this->Form->control('LastName');
+                    echo $this->Form->control('DateofBirth');
+                    echo $this->Form->control('AddressID');
+                    echo $this->Form->control('StaffAcID');
+                    echo $this->Form->control('Password');
+                    echo $this->Form->control('Email');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
