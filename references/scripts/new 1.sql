@@ -1,3 +1,5 @@
+CREATE DATABASE GoToGroDatabase;
+USE GoToGroDatabase;
 CREATE TABLE Address (
 	`AddressID` int AUTO_INCREMENT NOT NULL,
 	`StreetAddress` varchar(30) NOT NULL,
