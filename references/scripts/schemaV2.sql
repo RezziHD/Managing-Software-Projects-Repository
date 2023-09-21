@@ -28,7 +28,7 @@ CREATE TABLE members (
 	date_of_birth DATE NOT NULL,
 	street VARCHAR(255),
 	city VARCHAR(100),
-	state CHAR(2),
+	state CHAR(10),
 	zip CHAR(10),
 	email VARCHAR(100) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL UNIQUE,
 	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
