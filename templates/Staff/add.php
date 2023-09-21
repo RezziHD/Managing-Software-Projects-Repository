@@ -17,7 +17,6 @@
             <fieldset>
                 <legend><?= __('Add Staff') ?></legend>
                 <?php
-                    echo $this->Form->control('id');
                     echo $this->Form->control('first_name');
                     echo $this->Form->control('middle_name');
                     echo $this->Form->control('last_name');
@@ -27,6 +26,7 @@
                     echo $this->Form->control('state');
                     echo $this->Form->control('zip');
                     echo $this->Form->control('email');
+                    echo $this->Form->control('password');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

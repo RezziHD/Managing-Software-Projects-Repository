@@ -40,8 +40,8 @@ class StaffTable extends Table
         parent::initialize($config);
 
         $this->setTable('staff');
-        $this->setDisplayField('staffID');
-        $this->setPrimaryKey('staffID');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 

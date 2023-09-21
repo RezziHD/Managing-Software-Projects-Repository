@@ -10,8 +10,8 @@
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $staff->staffID],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $staff->staffID), 'class' => 'side-nav-item']
+                ['action' => 'delete', $staff->id],
+                ['confirm' => __('Are you sure you want to delete # {0} {1}?', $staff->first_name, $staff->last_name), 'class' => 'side-nav-item']
             ) ?>
             <?= $this->Html->link(__('List Staff'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
