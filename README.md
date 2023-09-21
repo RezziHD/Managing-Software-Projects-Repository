@@ -16,14 +16,6 @@ cd Managing-Software-Projects-Repository
 ```powershell
 composer install
 ```
-## Configuration
-
-Create your own `config/app_local.php` from `config/app_local.example.php`
-
-Add database details...
-
-Other environment agnostic settings can be changed in `config/app.php`.
-
 
 ## Run
 You can now either use your machine's webserver to view the default home page, or start
