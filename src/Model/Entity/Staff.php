@@ -4,20 +4,23 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use Authentication\PasswordHasher\DefaultPasswordHasher;
 
 /**
  * Staff Entity
  *
- * @property int $StaffID
- * @property string $FirstName
- * @property string $MiddleName
- * @property string $LastName
- * @property \Cake\I18n\FrozenDate $DateofBirth
- * @property int $AddressID
- * @property int|null $StaffAcID
- * @property string $Password
- * @property string|null $Email
+ * @property int $id
+ * @property string $first_name
+ * @property string|null $middle_name
+ * @property string $last_name
+ * @property \Cake\I18n\FrozenDate $date_of_birth
+ * @property string|null $street
+ * @property string|null $city
+ * @property string|null $state
+ * @property string|null $zip
+ * @property string|resource $password
+ * @property string $email
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  */
 class Staff extends Entity
 {
@@ -31,18 +34,26 @@ class Staff extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'FirstName' => true,
-        'MiddleName' => true,
-        'LastName' => true,
-        'DateofBirth' => true,
-        'AddressID' => true,
-        'StaffAcID' => true,
-        'Password' => true,
-        'Email' => true,
+        'first_name' => true,
+        'middle_name' => true,
+        'last_name' => true,
+        'date_of_birth' => true,
+        'street' => true,
+        'city' => true,
+        'state' => true,
+        'zip' => true,
+        'password' => true,
+        'email' => true,
+        'created' => true,
+        'modified' => true,
     ];
-    /*protected function _setPassword(string $password)
-    {
-        $hasher = new DefaultPasswordHasher();
-        return $hasher->hash($password);
-    }*/
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array<string>
+     */
+    protected $_hidden = [
+        'password',
+    ];
 }

@@ -10,8 +10,8 @@
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $staff->staffID],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $staff->staffID), 'class' => 'side-nav-item']
+                ['action' => 'delete', $staff->id],
+                ['confirm' => __('Are you sure you want to delete # {0} {1}?', $staff->first_name, $staff->last_name), 'class' => 'side-nav-item']
             ) ?>
             <?= $this->Html->link(__('List Staff'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
@@ -22,15 +22,16 @@
             <fieldset>
                 <legend><?= __('Edit Staff') ?></legend>
                 <?php
-                    echo $this->Form->control('StaffID');
-                    echo $this->Form->control('FirstName');
-                    echo $this->Form->control('MiddleName');
-                    echo $this->Form->control('LastName');
-                    echo $this->Form->control('DateofBirth');
-                    echo $this->Form->control('AddressID');
-                    echo $this->Form->control('StaffAcID');
-                    echo $this->Form->control('Password');
-                    echo $this->Form->control('Email');
+                    echo $this->Form->control('id');
+                    echo $this->Form->control('first_name');
+                    echo $this->Form->control('middle_name');
+                    echo $this->Form->control('last_name');
+                    echo $this->Form->control('date_of_birth');
+                    echo $this->Form->control('street');
+                    echo $this->Form->control('city');
+                    echo $this->Form->control('state');
+                    echo $this->Form->control('zip');
+                    echo $this->Form->control('email');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

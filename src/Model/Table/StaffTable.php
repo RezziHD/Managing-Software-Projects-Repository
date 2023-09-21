@@ -24,6 +24,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Staff[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Staff[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Staff[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class StaffTable extends Table
 {
@@ -38,8 +40,19 @@ class StaffTable extends Table
         parent::initialize($config);
 
         $this->setTable('staff');
-        $this->setDisplayField('staffID');
-        $this->setPrimaryKey('staffID');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
+
+        $this->hasMany('Sales', [
+            'foreignKey' => 'staff_id',
+        ]);
+        $this->belongsToMany('Roles', [
+            'foreignKey' => 'staff_id',
+            'targetForeignKey' => 'role_id',
+            'joinTable' => 'staff_roles',
+        ]);
     }
 
     /**
@@ -51,48 +64,71 @@ class StaffTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('FirstName')
-            ->maxLength('FirstName', 30)
-            ->requirePresence('FirstName', 'create')
-            ->notEmptyString('FirstName');
+            ->scalar('first_name')
+            ->maxLength('first_name', 50)
+            ->requirePresence('first_name', 'create')
+            ->notEmptyString('first_name');
 
         $validator
-            ->scalar('MiddleName')
-            ->maxLength('MiddleName', 30)
-            ->requirePresence('MiddleName', 'create')
-            ->notEmptyString('MiddleName');
+            ->scalar('middle_name')
+            ->maxLength('middle_name', 50)
+            ->allowEmptyString('middle_name');
 
         $validator
-            ->scalar('LastName')
-            ->maxLength('LastName', 30)
-            ->requirePresence('LastName', 'create')
-            ->notEmptyString('LastName');
+            ->scalar('last_name')
+            ->maxLength('last_name', 50)
+            ->requirePresence('last_name', 'create')
+            ->notEmptyString('last_name');
 
         $validator
-            ->date('DateofBirth')
-            ->requirePresence('DateofBirth', 'create')
-            ->notEmptyDate('DateofBirth');
+            ->date('date_of_birth')
+            ->requirePresence('date_of_birth', 'create')
+            ->notEmptyDate('date_of_birth');
 
         $validator
-            ->integer('AddressID')
-            ->requirePresence('AddressID', 'create')
-            ->notEmptyString('AddressID');
+            ->scalar('street')
+            ->maxLength('street', 255)
+            ->allowEmptyString('street');
 
         $validator
-            ->integer('StaffAcID')
-            ->allowEmptyString('StaffAcID');
+            ->scalar('city')
+            ->maxLength('city', 100)
+            ->allowEmptyString('city');
 
         $validator
-            ->scalar('Password')
-            ->maxLength('Password', 60)
-            ->requirePresence('Password', 'create')
-            ->notEmptyString('Password');
+            ->scalar('state')
+            ->maxLength('state', 10)
+            ->allowEmptyString('state');
 
         $validator
-            ->scalar('Email')
-            ->maxLength('Email', 50)
-            ->allowEmptyString('Email');
+            ->scalar('zip')
+            ->maxLength('zip', 10)
+            ->allowEmptyString('zip');
+
+        $validator
+            ->requirePresence('password', 'create')
+            ->notEmptyString('password');
+
+        $validator
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email')
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
+
+        return $rules;
     }
 }
