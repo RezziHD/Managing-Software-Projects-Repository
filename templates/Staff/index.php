@@ -16,29 +16,32 @@
                     <th><?= $this->Paginator->sort('middle_name') ?></th>
                     <th><?= $this->Paginator->sort('last_name') ?></th>
                     <th><?= $this->Paginator->sort('date_of_birth') ?></th>
+                    <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('street') ?></th>
                     <th><?= $this->Paginator->sort('city') ?></th>
                     <th><?= $this->Paginator->sort('state') ?></th>
                     <th><?= $this->Paginator->sort('zip') ?></th>
-                    <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($staff as $staff): ?>
+                <?php if (count($staff)==0): ?>
+                    <tr><td colspan="12">No Staff in the database</td></tr>
+                <?php else: 
+                    foreach ($staff as $staff): ?>
                 <tr>
                     <td><?= $this->Number->format($staff->id) ?></td>
                     <td><?= h($staff->first_name) ?></td>
                     <td><?= h($staff->middle_name) ?></td>
                     <td><?= h($staff->last_name) ?></td>
                     <td><?= h($staff->date_of_birth) ?></td>
+                    <td><?= h($staff->email) ?></td>
                     <td><?= h($staff->street) ?></td>
                     <td><?= h($staff->city) ?></td>
                     <td><?= h($staff->state) ?></td>
                     <td><?= h($staff->zip) ?></td>
-                    <td><?= h($staff->email) ?></td>
                     <td><?= h($staff->created) ?></td>
                     <td><?= h($staff->modified) ?></td>
                     <td class="actions">
@@ -47,7 +50,9 @@
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $staff->staffID], ['confirm' => __('Are you sure you want to delete # {0}?', $staff->staffID)]) ?>
                     </td>
                 </tr>
-                <?php endforeach; ?>
+                <?php endforeach; 
+                endif;?>
+
             </tbody>
         </table>
     </div>
