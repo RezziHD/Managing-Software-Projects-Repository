@@ -19,10 +19,12 @@
             <h3><?= h($staff->staffID) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('First Name') ?></th>
-                    <td><?= h($staff->first_name) ?></td>
+                    <th><?= __('Id') ?></th>
+                    <td><?= $this->Number->format($staff->id) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('First Name') ?></th>
+                    <td><?= h($staff->first_name) ?></td>
                     <th><?= __('Middle Name') ?></th>
                     <td><?= h($staff->middle_name) ?></td>
                 </tr>
@@ -31,32 +33,24 @@
                     <td><?= h($staff->last_name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Date Of Birth') ?></th>
+                    <td><?= h($staff->date_of_birth) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Street') ?></th>
                     <td><?= h($staff->street) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('City') ?></th>
                     <td><?= h($staff->city) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('State') ?></th>
                     <td><?= h($staff->state) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Zip') ?></th>
                     <td><?= h($staff->zip) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Email') ?></th>
                     <td><?= h($staff->email) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($staff->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date Of Birth') ?></th>
-                    <td><?= h($staff->date_of_birth) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>
