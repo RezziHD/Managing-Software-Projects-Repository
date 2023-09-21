@@ -1,13 +1,6 @@
 CREATE DATABASE GoToGroDatabase;
+
 USE GoToGroDatabase;
-CREATE TABLE Address (
-	`AddressID` int AUTO_INCREMENT NOT NULL,
-	`StreetAddress` varchar(30) NOT NULL,
-	`Suburb` varchar(30) NOT NULL,
-	`Postcode` char(4) NOT NULL,
-	`State` char(3) NOT NULL,
-	primary key(`AddressID`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 CREATE TABLE Staff (
 	`StaffID` int AUTO_INCREMENT NOT NULL,
@@ -15,28 +8,10 @@ CREATE TABLE Staff (
 	`MiddleName` varchar(30) NOT NULL,
 	`LastName` varchar(30) NOT NULL,
 	`DateofBirth` date NOT NULL,
-	`AddressID` int NOT NULL,
-	`StaffAcID` int NOT NULL,
+	`Address` text NOT NULL,
 	`Password` varchar(30) NOT NULL,
 	primary key(`StaffID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
-
-ALTER TABLE
-	Staff
-ADD
-	CONSTRAINT address_address_ID FOREIGN KEY (AddressID) REFERENCES Address (AddressID);
-
-CREATE TABLE Staff_Accountability (
-	`StaffAcID` int AUTO_INCREMENT NOT NULL,
-	`StaffID` int NOT NULL,
-	`Date` datetime NOT NULL,
-	primary key(`StaffAcID`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
-
-ALTER TABLE
-	Staff
-ADD
-	CONSTRAINT staff_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
 
 CREATE TABLE Member (
 	`MemberID` int AUTO_INCREMENT NOT NULL,
@@ -44,21 +19,14 @@ CREATE TABLE Member (
 	`MiddleName` varchar(30) NOT NULL,
 	`LastName` varchar(30) NOT NULL,
 	`DateofBirth` date NOT NULL,
-	`AddressID` int NOT NULL,
-	`StaffAcID` int NOT NULL,
+	`Address` text NOT NULL,
 	primary key(`MemberID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
-
-ALTER TABLE
-	Member
-ADD
-	CONSTRAINT member_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
 
 CREATE TABLE Sale (
 	`SaleID` int AUTO_INCREMENT NOT NULL,
 	`MemberID` int NOT NULL,
 	`Date` date NOT NULL,
-	`StaffAcID` int NOT NULL,
 	primary key(`SaleID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
@@ -66,11 +34,6 @@ ALTER TABLE
 	Sale
 ADD
 	CONSTRAINT member_sale_id FOREIGN KEY (MemberID) REFERENCES Member (MemberID);
-
-ALTER TABLE
-	Sale
-ADD
-	CONSTRAINT staff_sale_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
 
 CREATE TABLE Sale_Line (
 	`SaleID` int AUTO_INCREMENT NOT NULL,
@@ -86,7 +49,6 @@ CREATE TABLE Product (
 	`Supplier` varchar(30) NOT NULL,
 	`Price` float NOT NULL,
 	`Description` text NOT NULL,
-	`StaffAcID` int NOT NULL,
 	primary key(`ProductID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
@@ -94,11 +56,6 @@ ALTER TABLE
 	Sale_Line
 ADD
 	CONSTRAINT product_sale_id FOREIGN KEY (ProductID) REFERENCES Product (ProductID);
-
-ALTER TABLE
-	Product
-ADD
-	CONSTRAINT staff_new_access_id FOREIGN KEY (StaffAcID) REFERENCES Staff_Accountability (StaffAcID);
 
 CREATE TABLE Role (
 	`RoleID` int(11) NOT NULL,
@@ -109,7 +66,7 @@ CREATE TABLE Role (
 
 CREATE TABLE Staff_roles (
 	`StaffID` int(11) NOT NULL,
-	`RoleID` int(11) NOT NULL, 
+	`RoleID` int(11) NOT NULL,
 	primary key(`StaffID`, `RoleID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
@@ -122,12 +79,45 @@ ALTER TABLE
 	Staff_roles
 ADD
 	CONSTRAINT staff_roles_roles_id FOREIGN KEY (RoleID) REFERENCES Role (RoleID);
-	
-ALTER TABLE `staff` ADD `Email` VARCHAR(50) NULL DEFAULT NULL ;
-ALTER TABLE `member` ADD `Email` VARCHAR(50) NULL DEFAULT NULL ;
-ALTER TABLE `staff` CHANGE `StaffAcID` `StaffAcID` INT(11) NULL;
-ALTER TABLE `staff` CHANGE `Password` `Password` VARCHAR(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
 
-INSERT INTO `role` (`RoleID`, `RoleName`, `Description`) VALUES ('1', 'Admin', 'Admin Description'), ('2', 'Staff', 'Staff Description');
-INSERT INTO `address` (`StreetAddress`, `Suburb`, `Postcode`, `State`) VALUES ( '2 addrees street', 'suburb', '0000', 'STA');
-INSERT INTO `staff` (`StaffID`, `FirstName`, `MiddleName`, `LastName`, `DateofBirth`, `AddressID`, `StaffAcID`, `Password`, `Email`) VALUES (NULL, 'Admin fName', 'Admin mName', 'Admin lName', '1995-01-01', '1', NULL, '123456pass', 'admin@gotogro.com.au');
+ALTER TABLE
+	`staff`
+ADD
+	`Email` VARCHAR(50) NULL DEFAULT NULL;
+
+ALTER TABLE
+	`member`
+ADD
+	`Email` VARCHAR(50) NULL DEFAULT NULL;
+
+ALTER TABLE
+	`staff` CHANGE `Password` `Password` VARCHAR(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+INSERT INTO
+	`role` (`RoleID`, `RoleName`, `Description`)
+VALUES
+	('1', 'Admin', 'Admin Description'),
+	('2', 'Staff', 'Staff Description');
+
+INSERT INTO
+	`staff` (
+		`StaffID`,
+		`FirstName`,
+		`MiddleName`,
+		`LastName`,
+		`DateofBirth`,
+		`Address`,
+		`Password`,
+		`Email`
+	)
+VALUES
+	(
+		NULL,
+		'Admin fName',
+		'Admin mName',
+		'Admin lName',
+		'1995-01-01',
+		'Address text',
+		'123456pass',
+		'admin@gotogro.com.au'
+	);
