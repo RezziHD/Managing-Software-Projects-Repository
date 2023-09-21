@@ -11,30 +11,36 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('StaffID') ?></th>
-                    <th><?= $this->Paginator->sort('FirstName') ?></th>
-                    <th><?= $this->Paginator->sort('MiddleName') ?></th>
-                    <th><?= $this->Paginator->sort('LastName') ?></th>
-                    <th><?= $this->Paginator->sort('DateofBirth') ?></th>
-                    <th><?= $this->Paginator->sort('AddressID') ?></th>
-                    <th><?= $this->Paginator->sort('StaffAcID') ?></th>
-                    <th><?= $this->Paginator->sort('Password') ?></th>
-                    <th><?= $this->Paginator->sort('Email') ?></th>
+                    <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('first_name') ?></th>
+                    <th><?= $this->Paginator->sort('middle_name') ?></th>
+                    <th><?= $this->Paginator->sort('last_name') ?></th>
+                    <th><?= $this->Paginator->sort('date_of_birth') ?></th>
+                    <th><?= $this->Paginator->sort('street') ?></th>
+                    <th><?= $this->Paginator->sort('city') ?></th>
+                    <th><?= $this->Paginator->sort('state') ?></th>
+                    <th><?= $this->Paginator->sort('zip') ?></th>
+                    <th><?= $this->Paginator->sort('email') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($staff as $staff): ?>
                 <tr>
-                    <td><?= $this->Number->format($staff->StaffID) ?></td>
-                    <td><?= h($staff->FirstName) ?></td>
-                    <td><?= h($staff->MiddleName) ?></td>
-                    <td><?= h($staff->LastName) ?></td>
-                    <td><?= h($staff->DateofBirth) ?></td>
-                    <td><?= $this->Number->format($staff->AddressID) ?></td>
-                    <td><?= $staff->StaffAcID === null ? '' : $this->Number->format($staff->StaffAcID) ?></td>
-                    <td><?= h($staff->Password) ?></td>
-                    <td><?= h($staff->Email) ?></td>
+                    <td><?= $this->Number->format($staff->id) ?></td>
+                    <td><?= h($staff->first_name) ?></td>
+                    <td><?= h($staff->middle_name) ?></td>
+                    <td><?= h($staff->last_name) ?></td>
+                    <td><?= h($staff->date_of_birth) ?></td>
+                    <td><?= h($staff->street) ?></td>
+                    <td><?= h($staff->city) ?></td>
+                    <td><?= h($staff->state) ?></td>
+                    <td><?= h($staff->zip) ?></td>
+                    <td><?= h($staff->email) ?></td>
+                    <td><?= h($staff->created) ?></td>
+                    <td><?= h($staff->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $staff->staffID]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $staff->staffID]) ?>

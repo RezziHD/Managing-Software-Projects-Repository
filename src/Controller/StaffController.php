@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -103,30 +102,4 @@ class StaffController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
-    /*public function login()
-    {
-        $result = $this->Authentication->getResult();
-        // If the user is logged in send them away.
-        if ($result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/view';
-            return $this->redirect($target);
-        }
-        if ($this->request->is('post')) {
-            $this->Flash->error('Invalid username or password');
-        }
-    }
-
-    public function beforeFilter(\Cake\Event\EventInterface $event)
-    {
-        parent::beforeFilter($event);
-
-        $this->Authentication->allowUnauthenticated(['login']);
-    }
-
-    public function logout()
-    {
-        $this->Authentication->logout();
-        return $this->redirect(['controller' => 'Staff', 'action' => 'login']);
-    }*/
 }
