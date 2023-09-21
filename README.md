@@ -1,8 +1,12 @@
 ## Installation
 
 1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
+2. Download https://www.7-zip.org/download.html and install
 
 ## Setup
+open C:\xampp\php\php.ini
+change the line ";extension=intl" => "extension=intl"
+
 ```powershell
 git clone https://github.com/RezziHD/Managing-Software-Projects-Repository
 ```
@@ -12,14 +16,6 @@ cd Managing-Software-Projects-Repository
 ```powershell
 composer install
 ```
-## Configuration
-
-Create your own `config/app_local.php` from `config/app_local.example.php`
-
-Add database details...
-
-Other environment agnostic settings can be changed in `config/app.php`.
-
 
 ## Run
 You can now either use your machine's webserver to view the default home page, or start
