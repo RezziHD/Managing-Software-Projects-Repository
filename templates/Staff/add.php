@@ -17,13 +17,13 @@
             <fieldset>
                 <legend><?= __('Add Staff') ?></legend>
                 <?php
-                    echo $this->Form->control('StaffID');
+                    echo $this->Form->hidden('StaffID');
                     echo $this->Form->control('FirstName');
                     echo $this->Form->control('MiddleName');
                     echo $this->Form->control('LastName');
                     echo $this->Form->control('DateofBirth');
                     echo $this->Form->control('AddressID');
-                    echo $this->Form->control('StaffAcID');
+                    echo $this->Form->hidden('StaffAcID');
                     echo $this->Form->control('Password');
                     echo $this->Form->control('Email');
                 ?>
