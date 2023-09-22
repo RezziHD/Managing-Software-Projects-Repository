@@ -7,7 +7,6 @@ namespace App\Controller;
  * Products Controller
  *
  * @property \App\Model\Table\ProductsTable $Products
- * @method \App\Model\Entity\Product[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class ProductsController extends AppController
 {
@@ -18,7 +17,8 @@ class ProductsController extends AppController
      */
     public function index()
     {
-        $products = $this->paginate($this->Products);
+        $query = $this->Products->find();
+        $products = $this->paginate($query);
 
         $this->set(compact('products'));
     }
@@ -32,10 +32,7 @@ class ProductsController extends AppController
      */
     public function view($id = null)
     {
-        $product = $this->Products->get($id, [
-            'contain' => ['SaleLines'],
-        ]);
-
+        $product = $this->Products->get($id, contain: ['SaleLines']);
         $this->set(compact('product'));
     }
 
@@ -68,9 +65,7 @@ class ProductsController extends AppController
      */
     public function edit($id = null)
     {
-        $product = $this->Products->get($id, [
-            'contain' => [],
-        ]);
+        $product = $this->Products->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
             if ($this->Products->save($product)) {
@@ -87,7 +82,7 @@ class ProductsController extends AppController
      * Delete method
      *
      * @param string|null $id Product id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)

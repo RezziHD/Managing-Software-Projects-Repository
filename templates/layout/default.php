@@ -1,5 +1,4 @@
 <?php
-
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -15,39 +14,36 @@
  * @var \App\View\AppView $this
  */
 
-$titleGoToGro = 'Go To Groceries: Your friendly Grocery Shop';
+$cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $titleGoToGro ?>:
+        <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
-
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>">Go To Groceries</a>
+            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
         </div>
         <div class="top-nav-links">
-            <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index'], ['target' => '_self', 'rel' => 'noopener']) ?>
-            <?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index'], ['target' => '_self', 'rel' => 'noopener']) ?>
-            <?= $this->Html->link('API', 'https://api.cakephp.org/', ['target' => '_self', 'rel' => 'noopener']) ?>
+            <?= $this->Html->link('CakePHP', ['controller' => 'Pages', 'action' => 'display', 'cakephp']) ?>
+            <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index']) ?>
+            <?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index']) ?>
+            <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/">Documentation</a>
+            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
         </div>
     </nav>
     <main class="main">
@@ -59,5 +55,4 @@ $titleGoToGro = 'Go To Groceries: Your friendly Grocery Shop';
     <footer>
     </footer>
 </body>
-
 </html>

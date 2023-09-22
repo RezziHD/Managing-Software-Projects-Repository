@@ -15,7 +15,7 @@ class StaffFixture extends TestFixture
      *
      * @var string
      */
-    public $table = 'staff';
+    public string $table = 'staff';
     /**
      * Init method
      *
@@ -29,15 +29,15 @@ class StaffFixture extends TestFixture
                 'first_name' => 'Lorem ipsum dolor sit amet',
                 'middle_name' => 'Lorem ipsum dolor sit amet',
                 'last_name' => 'Lorem ipsum dolor sit amet',
-                'date_of_birth' => '2023-09-21',
+                'date_of_birth' => '2023-09-22',
                 'street' => 'Lorem ipsum dolor sit amet',
                 'city' => 'Lorem ipsum dolor sit amet',
                 'state' => '',
                 'zip' => '',
                 'password' => 'Lorem ipsum dolor sit amet',
                 'email' => 'Lorem ipsum dolor sit amet',
-                'created' => 1695300088,
-                'modified' => 1695300088,
+                'created' => 1695368563,
+                'modified' => 1695368563,
             ],
         ];
         parent::init();
