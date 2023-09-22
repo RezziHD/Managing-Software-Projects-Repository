@@ -34,6 +34,7 @@ $titleGoToGro = 'Go To Groceries: Your friendly Grocery Shop';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
     <nav class="top-nav">
