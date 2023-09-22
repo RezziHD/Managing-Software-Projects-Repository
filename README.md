@@ -49,3 +49,9 @@ automated upgrades, so you have to do any updates manually.
 The app skeleton uses [Milligram](https://milligram.io/) (v1.3) minimalist CSS
 framework by default. You can, however, replace it with any other library or
 custom styles.
+
+Steps for working:
+1. start apache 
+2. open repo in vsc
+3. open terminal 'cls' to clear screen
+4. bin/cake server
