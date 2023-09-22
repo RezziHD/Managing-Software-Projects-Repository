@@ -103,14 +103,7 @@ class StaffTable extends Table
         $validator
             ->scalar('state')
             ->maxLength('state', 10)
-            ->allowEmptyString('state')
-            ->add('state', 'custom', ['rule' => function ($value, $context) {
-                if($value=='Select Value'){
-                    return false;
-                }else{
-                    return true;
-                }
-            }, 'message' => 'Please Select a state']);
+            ->notEmptyString('state','Please Select a state');
 
         $validator
             ->scalar('zip')

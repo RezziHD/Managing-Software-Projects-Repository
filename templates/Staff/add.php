@@ -42,8 +42,7 @@
                                 <?= $this->Form->select(
                                     'state',
                                     ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'],
-                                    ['empty' => '(Select State)'],
-                                    ['label' => 'State']
+                                    ['empty' => '(Select State)']
                                 ); ?></td>
                             <td><?= $this->Form->control('zip') ?></td>
                         </tr>
