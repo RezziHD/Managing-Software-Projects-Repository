@@ -1,18 +1,18 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\Http\Client\Message;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\I18n\FrozenTime;
 
 /**
  * Staff Model
+ *
+ * @property \App\Model\Table\SalesTable&\Cake\ORM\Association\HasMany $Sales
+ * @property \App\Model\Table\RolesTable&\Cake\ORM\Association\BelongsToMany $Roles
  *
  * @method \App\Model\Entity\Staff newEmptyEntity()
  * @method \App\Model\Entity\Staff newEntity(array $data, array $options = [])
@@ -65,7 +65,7 @@ class StaffTable extends Table
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator): Validator
-    {
+    {   
         $validator
             ->scalar('first_name')
             ->maxLength('first_name', 50,'First name cannot be more than 50 characters')

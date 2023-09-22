@@ -12,15 +12,18 @@ use Cake\ORM\Entity;
  * @property string $first_name
  * @property string|null $middle_name
  * @property string $last_name
- * @property \Cake\I18n\FrozenDate $date_of_birth
+ * @property \Cake\I18n\Date $date_of_birth
  * @property string|null $street
  * @property string|null $city
  * @property string|null $state
  * @property string|null $zip
  * @property string|resource $password
  * @property string $email
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
+ *
+ * @property \App\Model\Entity\Sale[] $sales
+ * @property \App\Model\Entity\Role[] $roles
  */
 class Staff extends Entity
 {
@@ -33,7 +36,7 @@ class Staff extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'first_name' => true,
         'middle_name' => true,
         'last_name' => true,
@@ -46,6 +49,8 @@ class Staff extends Entity
         'email' => true,
         'created' => true,
         'modified' => true,
+        'sales' => true,
+        'roles' => true,
     ];
 
     /**
@@ -53,7 +58,7 @@ class Staff extends Entity
      *
      * @var array<string>
      */
-    protected $_hidden = [
+    protected array $_hidden = [
         'password',
     ];
 }

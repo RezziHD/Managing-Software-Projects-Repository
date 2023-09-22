@@ -23,8 +23,10 @@ class StaffTableTest extends TestCase
      *
      * @var array<string>
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.Staff',
+        'app.Sales',
+        'app.Roles',
     ];
 
     /**
@@ -58,6 +60,17 @@ class StaffTableTest extends TestCase
      * @uses \App\Model\Table\StaffTable::validationDefault()
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     * @uses \App\Model\Table\StaffTable::buildRules()
+     */
+    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -24,8 +24,8 @@ class ProductsFixture extends TestFixture
                 'supplier' => 'Lorem ipsum dolor sit amet',
                 'price' => 1.5,
                 'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'created' => 1695352392,
-                'modified' => 1695352392,
+                'created' => 1695368687,
+                'modified' => 1695368687,
             ],
         ];
         parent::init();

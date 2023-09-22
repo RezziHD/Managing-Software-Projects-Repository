@@ -13,8 +13,8 @@ use Cake\ORM\Entity;
  * @property string $supplier
  * @property string $price
  * @property string|null $description
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
  *
  * @property \App\Model\Entity\SaleLine[] $sale_lines
  */
@@ -29,7 +29,7 @@ class Product extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'supplier' => true,
         'price' => true,
