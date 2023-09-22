@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -18,6 +19,7 @@ $titleGoToGro = 'Go To Groceries: Your friendly Grocery Shop';
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,14 +38,16 @@ $titleGoToGro = 'Go To Groceries: Your friendly Grocery Shop';
     <?= $this->fetch('script') ?>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
+
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
             <a href="<?= $this->Url->build('/') ?>">Go To Groceries</a>
         </div>
         <div class="top-nav-links">
-            <a target="_self" rel="noopener" href="../Staff">Staff</a>
-            <a target="_self" rel="noopener" href="https://api.cakephp.org/">API</a>
+            <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index'], ['target' => '_self', 'rel' => 'noopener']) ?>
+            <?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index'], ['target' => '_self', 'rel' => 'noopener']) ?>
+            <?= $this->Html->link('API', 'https://api.cakephp.org/', ['target' => '_self', 'rel' => 'noopener']) ?>
         </div>
     </nav>
     <main class="main">
@@ -55,4 +59,5 @@ $titleGoToGro = 'Go To Groceries: Your friendly Grocery Shop';
     <footer>
     </footer>
 </body>
+
 </html>
