@@ -1,12 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Http\Client\Message;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\I18n\FrozenTime;
 
 /**
  * Staff Model
@@ -65,25 +68,27 @@ class StaffTable extends Table
     {
         $validator
             ->scalar('first_name')
-            ->maxLength('first_name', 50)
+            ->maxLength('first_name', 50,'First name cannot be more than 50 characters')
+            ->minLength('first-name',3,'First name cannot be less than 3 characters')
             ->requirePresence('first_name', 'create')
-            ->notEmptyString('first_name');
+            ->notEmptyString('first_name','First name cannot be empty');
 
         $validator
             ->scalar('middle_name')
-            ->maxLength('middle_name', 50)
+            ->maxLength('middle_name', 50, 'Middle name cannot be more than 50 characters')
             ->allowEmptyString('middle_name');
 
         $validator
             ->scalar('last_name')
-            ->maxLength('last_name', 50)
+            ->maxLength('last_name', 50,'Last name cannot be more than 50 characters')
+            ->minLength('first-name',2,'Last name cannot be less than 3 characters')
             ->requirePresence('last_name', 'create')
-            ->notEmptyString('last_name');
+            ->notEmptyString('last_name','Last name cannot be empty');
 
         $validator
             ->date('date_of_birth')
             ->requirePresence('date_of_birth', 'create')
-            ->notEmptyDate('date_of_birth');
+            ->notEmptyDate('date_of_birth','Date of Birth cannot be empty');
 
         $validator
             ->scalar('street')
@@ -98,7 +103,14 @@ class StaffTable extends Table
         $validator
             ->scalar('state')
             ->maxLength('state', 10)
-            ->allowEmptyString('state');
+            ->allowEmptyString('state')
+            ->add('state', 'custom', ['rule' => function ($value, $context) {
+                if($value=='Select Value'){
+                    return false;
+                }else{
+                    return true;
+                }
+            }, 'message' => 'Please Select a state']);
 
         $validator
             ->scalar('zip')
