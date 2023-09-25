@@ -42,6 +42,7 @@ $Description = 'Go To Grocery';
         <div class="top-nav-links">
             <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index']) ?>
             <?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index']) ?>
+            <?= $this->Html->link('Sales', ['controller' => 'Sales', 'action' => 'index']) ?>
         </div>
     </nav>
     <main class="main">
