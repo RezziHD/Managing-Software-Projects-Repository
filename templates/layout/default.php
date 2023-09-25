@@ -14,7 +14,7 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$Description = 'Go To Grocery';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,16 +22,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $cakeDescription ?>:
+        <?= $Description ?>:
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
     <nav class="top-nav">
@@ -39,11 +40,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
         </div>
         <div class="top-nav-links">
-            <?= $this->Html->link('CakePHP', ['controller' => 'Pages', 'action' => 'display', 'cakephp']) ?>
             <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index']) ?>
             <?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index']) ?>
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
+            <?= $this->Html->link('Sales', ['controller' => 'Sales', 'action' => 'index']) ?>
         </div>
     </nav>
     <main class="main">
