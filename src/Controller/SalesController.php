@@ -18,7 +18,7 @@ class SalesController extends AppController
     public function index()
     {
         $query = $this->Sales->find()
-            ->contain(['Members', 'Staff']);
+            ->contain(['Members', 'Staff', 'SaleLines']);
         $sales = $this->paginate($query);
 
         $this->set(compact('sales'));
@@ -33,7 +33,7 @@ class SalesController extends AppController
      */
     public function view($id = null)
     {
-        $sale = $this->Sales->get($id, contain: ['Members', 'Staff', 'SaleLines']);
+        $sale = $this->Sales->get($id, ['contain'=> ['Members', 'Staff', 'SaleLines']]);
         $this->set(compact('sale'));
     }
 
@@ -46,7 +46,7 @@ class SalesController extends AppController
     {
         $sale = $this->Sales->newEmptyEntity();
         if ($this->request->is('post')) {
-            $sale = $this->Sales->patchEntity($sale, $this->request->getData(),['associasted' => ['SaleLines']]);
+            $sale = $this->Sales->patchEntity($sale, $this->request->getData(),['associated' => 'SaleLines']);
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
 

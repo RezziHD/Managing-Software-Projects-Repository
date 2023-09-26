@@ -33,6 +33,7 @@ $Description = 'Go To Grocery';
     <?= $this->fetch('script') ?>
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <?= $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'); ?>
 </head>
 <body>
     <nav class="top-nav">

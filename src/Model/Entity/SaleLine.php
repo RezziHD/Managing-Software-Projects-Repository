@@ -36,5 +36,6 @@ class SaleLine extends Entity
         'modified' => true,
         'sale' => true,
         'product' => true,
+        'line_number'=>true,
     ];
 }

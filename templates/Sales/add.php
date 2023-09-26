@@ -7,6 +7,7 @@
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $products
  */
+$prodJSON=json_encode($products)
 ?>
 <div class="row">
     <aside class="column">
@@ -24,14 +25,47 @@
                 echo $this->Form->control('member_id', ['options' => $members]);
                 echo $this->Form->control('staff_id', ['options' => $staff]);
                 echo $this->Form->control('sale_date');
-
-                echo $this->Form->button('Add Line', ['type' => 'button']);
-                
-                echo $this->Form->control('sale_lines.0.product_id',['options'=>$products]);
                 ?>
+                <button type="button" name="add" id="add">Add Product</button>
+                <table id="dynamic_field">
+                </table>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
 </div>
+<script>  
+ $(document).ready(function(){  
+    console.log("ready");
+      var i=0;
+      var prods = <?php echo $prodJSON ?>;
+      var options = "";
+      for(var key in prods){
+        options = options + "<option value='"+key+"'>"+prods[key]+"</option>";
+    }
+      $('#add').click(function(){ 
+            i++;
+            $('#dynamic_field').append(
+                '<tr id="row'+i+'">'+
+                    '<td><div class="input text">'+
+                        '<label for="sale_lines.'+i+'.line_number">Line Number</label><input type="text" name="sale_lines['+i+'][line_number]" id="sale_lines.'+i+'.line_number" value='+i+' readonly>'+
+                    '</div></td>'+
+                    '<td><div class="input select"><label for="sale_lines.'+i+'.product_id">Product</label>'+
+                        '<select name="sale_lines['+i+'][product_id]" id="sale_lines.'+i+'.product_id">'+
+                            options+
+                        '</select>'+
+                    '</div></td>'+
+                    '<td><div class="input text">'+
+                        '<label for="sale_lines.'+i+'.quantity">Quantity</label><input type="text" name="sale_lines['+i+'][quantity]" id="sale_lines.'+i+'.quantity">'+
+                    '</div></td>'+
+                '</tr>'
+            );  
+      });  
+      /*$(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+      });  */
+ 
+ });  
+</script>
