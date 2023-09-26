@@ -33,7 +33,7 @@ class SaleLinesController extends AppController
      */
     public function view($id = null)
     {
-        $saleLine = $this->SaleLines->get($id, contain: ['Sales', 'Products']);
+        $saleLine = $this->SaleLines->get($id, ['contain'=> ['Sales', 'Products']]);
         $this->set(compact('saleLine'));
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -33,7 +34,7 @@ class SalesController extends AppController
      */
     public function view($id = null)
     {
-        $sale = $this->Sales->get($id, ['contain'=> ['Members', 'Staff', 'SaleLines']]);
+        $sale = $this->Sales->get($id, ['contain' => ['Members', 'Staff', 'SaleLines']]);
         $this->set(compact('sale'));
     }
 
@@ -46,7 +47,7 @@ class SalesController extends AppController
     {
         $sale = $this->Sales->newEmptyEntity();
         if ($this->request->is('post')) {
-            $sale = $this->Sales->patchEntity($sale, $this->request->getData(),['associated' => 'SaleLines']);
+            $sale = $this->Sales->patchEntity($sale, $this->request->getData(), ['associated' => 'SaleLines']);
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
 
@@ -57,7 +58,7 @@ class SalesController extends AppController
         $members = $this->Sales->Members->find('list', limit: 200)->all();
         $staff = $this->Sales->Staff->find('list', limit: 200)->all();
         $products = $this->Sales->SaleLines->Products->find('list', limit: 200)->all();
-        $this->set(compact('sale', 'members', 'staff','products'));
+        $this->set(compact('sale', 'members', 'staff', 'products'));
     }
 
     /**

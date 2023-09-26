@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Sale $sale
+ * @var \Cake\Collection\CollectionInterface|string[] $products
  */
 ?>
 <div class="row">
@@ -24,7 +25,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Staff') ?></th>
-                    <td><?= $sale->hasValue('staff') ? $this->Html->link($sale->staff->id, ['controller' => 'Staff', 'action' => 'view', $sale->staff->id]) : '' ?></td>
+                    <td><?= $sale->hasValue('staff') ? $this->Html->link($sale->staff->first_name, ['controller' => 'Staff', 'action' => 'view', $sale->staff->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
@@ -49,22 +50,16 @@
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th><?= __('Sale Id') ?></th>
                             <th><?= __('Line Number') ?></th>
                             <th><?= __('Product Id') ?></th>
                             <th><?= __('Quantity') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($sale->sale_lines as $saleLines) : ?>
                         <tr>
-                            <td><?= h($saleLines->sale_id) ?></td>
                             <td><?= h($saleLines->line_number) ?></td>
                             <td><?= h($saleLines->product_id) ?></td>
                             <td><?= h($saleLines->quantity) ?></td>
-                            <td><?= h($saleLines->created) ?></td>
-                            <td><?= h($saleLines->modified) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'SaleLines', 'action' => 'view', $saleLines->sale_id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'SaleLines', 'action' => 'edit', $saleLines->sale_id]) ?>

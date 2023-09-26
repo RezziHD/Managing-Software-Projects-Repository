@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Staff'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column column-80">
         <div class="staff view content">
             <h3><?= h($staff->staffID) ?></h3>
             <table>

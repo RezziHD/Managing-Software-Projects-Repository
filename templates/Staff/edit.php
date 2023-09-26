@@ -16,7 +16,7 @@
             <?= $this->Html->link(__('List Staff'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column column-80">
         <div class="staff form content">
             <?= $this->Form->create($staff) ?>
             <fieldset>
