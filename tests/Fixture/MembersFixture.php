@@ -29,8 +29,13 @@ class MembersFixture extends TestFixture
                 'state' => '',
                 'zip' => '',
                 'email' => 'Lorem ipsum dolor sit amet',
+<<<<<<< Updated upstream
                 'created' => 1695369162,
                 'modified' => 1695369162,
+=======
+                'created' => 1695355642,
+                'modified' => 1695355642,
+>>>>>>> Stashed changes
             ],
         ];
         parent::init();

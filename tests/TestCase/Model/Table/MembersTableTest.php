@@ -23,7 +23,11 @@ class MembersTableTest extends TestCase
      *
      * @var array<string>
      */
+<<<<<<< Updated upstream
     protected array $fixtures = [
+=======
+    protected $fixtures = [
+>>>>>>> Stashed changes
         'app.Members',
         'app.Sales',
     ];
