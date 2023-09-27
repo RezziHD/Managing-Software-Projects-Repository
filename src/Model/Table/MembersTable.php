@@ -3,11 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-<<<<<<< Updated upstream
-use Cake\ORM\Query\SelectQuery;
-=======
 use Cake\ORM\Query;
->>>>>>> Stashed changes
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -46,11 +42,9 @@ class MembersTable extends Table
         parent::initialize($config);
 
         $this->setTable('members');
-<<<<<<< Updated upstream
-        $this->setDisplayField('first_name');
-=======
+
         $this->setDisplayField('id');
->>>>>>> Stashed changes
+
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -102,11 +96,7 @@ class MembersTable extends Table
 
         $validator
             ->scalar('state')
-<<<<<<< Updated upstream
-            ->maxLength('state', 10)
-=======
             ->maxLength('state', 2)
->>>>>>> Stashed changes
             ->allowEmptyString('state');
 
         $validator

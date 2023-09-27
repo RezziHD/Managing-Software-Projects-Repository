@@ -41,15 +41,10 @@ $Description = 'Go To Grocery';
             <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
         </div>
         <div class="top-nav-links">
-<<<<<<< Updated upstream
             <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index']) ?>
             <?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index']) ?>
             <?= $this->Html->link('Sales', ['controller' => 'Sales', 'action' => 'index']) ?>
-=======
-            <a target="_self" rel="noopener" href="../Staff">Staff</a>
-			<a target="_self" rel="noopener" href="../Members">Members</a>
-            <a target="_self" rel="noopener" href="https://api.cakephp.org/">API</a>
->>>>>>> Stashed changes
+			<?= $this->Html->link('Members', ['controller'=> 'Members', 'action' => 'index']) ?>
         </div>
     </nav>
     <main class="main">
