@@ -21,18 +21,32 @@
             <?= $this->Form->create($staff) ?>
             <fieldset>
                 <legend><?= __('Edit Staff') ?></legend>
-                <?php
-                    echo $this->Form->control('id');
-                    echo $this->Form->control('first_name');
-                    echo $this->Form->control('middle_name');
-                    echo $this->Form->control('last_name');
-                    echo $this->Form->control('date_of_birth');
-                    echo $this->Form->control('street');
-                    echo $this->Form->control('city');
-                    echo $this->Form->control('state');
-                    echo $this->Form->control('zip');
-                    echo $this->Form->control('email');
-                ?>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><?= $this->Form->control('first_name') ?></td>
+                            <td><?= $this->Form->control('middle_name') ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= $this->Form->control('last_name') ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= $this->Form->control('date_of_birth') ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= $this->Form->control('street') ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= $this->Form->control('city') ?></td>
+                            <td><?= $this->Form->control('state') ?></td>
+                            <td><label for="state">State</label><?= $this->Form->select('state',['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'],['value'=> $staff->state] ) ?></td>
+                            <td><?= $this->Form->control('zip') ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= $this->Form->control('email') ?></td>
+                        </tr>
+                    </tbody>
+                </table>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
