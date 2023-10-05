@@ -1,9 +1,15 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Staff $staff
  */
 ?>
+<style>
+    .file {
+        border: none;
+    }
+</style>
 <div class="row">
     <aside class="column">
         <div class="side-nav">
@@ -21,32 +27,46 @@
             <?= $this->Form->create($staff) ?>
             <fieldset>
                 <legend><?= __('Edit Staff') ?></legend>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><?= $this->Form->control('first_name') ?></td>
-                            <td><?= $this->Form->control('middle_name') ?></td>
-                        </tr>
-                        <tr>
-                            <td><?= $this->Form->control('last_name') ?></td>
-                        </tr>
-                        <tr>
-                            <td><?= $this->Form->control('date_of_birth') ?></td>
-                        </tr>
-                        <tr>
-                            <td><?= $this->Form->control('street') ?></td>
-                        </tr>
-                        <tr>
-                            <td><?= $this->Form->control('city') ?></td>
-                            <td><?= $this->Form->control('state') ?></td>
-                            <td><label for="state">State</label><?= $this->Form->select('state',['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'],['value'=> $staff->state] ) ?></td>
-                            <td><?= $this->Form->control('zip') ?></td>
-                        </tr>
-                        <tr>
-                            <td><?= $this->Form->control('email') ?></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="container">
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control('first_name') ?></div>
+                        <div class="column"><?= $this->Form->control('middle_name') ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control('last_name') ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><label for="date_of_birth">Date of Birth</label>
+                                <?= $this->Form->date('date_of_birth', [
+                                    'min' => date('Y') - 70,
+                                    'max' => date('Y') - 18,
+                                ]); ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control('street') ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control('city') ?></div>
+                        <div class="column"><label for="state">State</label>
+                            <?= $this->Form->select(
+                                'state',
+                                [
+                                    'NSW' => 'NSW',
+                                    'VIC' => 'VIC',
+                                    'QLD' => 'QLD',
+                                    'WA' => 'WA',
+                                    'SA' => 'SA',
+                                    'TAS' => 'TAS',
+                                    'ACT' => 'ACT',
+                                    'NT' => 'NT'
+                                ],
+                            ) ?></div>
+                        <div class="column"><?= $this->Form->control('zip') ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control('email',['type' => 'email']) ?></div>
+                    </div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
