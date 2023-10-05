@@ -68,10 +68,11 @@ class StaffTable extends Table
     {   
         $validator
             ->scalar('first_name')
-            ->maxLength('first_name', 50,'First name cannot be more than 50 characters')
-            ->minLength('first-name',3,'First name cannot be less than 3 characters')
+            ->maxLength('first_name', 50,'too long')
+            ->minLength('first_name',3,'not long enough')
             ->requirePresence('first_name', 'create')
-            ->notEmptyString('first_name','First name cannot be empty');
+            ->requirePresence('first_name', 'update')
+            ->notEmptyString('first_name', "not Empty");
 
         $validator
             ->scalar('middle_name')
@@ -83,41 +84,50 @@ class StaffTable extends Table
             ->maxLength('last_name', 50,'Last name cannot be more than 50 characters')
             ->minLength('first-name',2,'Last name cannot be less than 3 characters')
             ->requirePresence('last_name', 'create')
+            ->requirePresence('last_name', 'update')
             ->notEmptyString('last_name','Last name cannot be empty');
 
         $validator
             ->date('date_of_birth')
             ->requirePresence('date_of_birth', 'create')
+            ->requirePresence('date_of_birth', 'update')
             ->notEmptyDate('date_of_birth','Date of Birth cannot be empty');
 
         $validator
             ->scalar('street')
             ->maxLength('street', 255)
-            ->allowEmptyString('street');
+            ->requirePresence('street', 'create')
+            ->requirePresence('street', 'update')
+            ->notEmptyDate('street','Street cannot be empty');
 
         $validator
             ->scalar('city')
             ->maxLength('city', 100)
-            ->allowEmptyString('city');
+            ->requirePresence('city', 'create')
+            ->requirePresence('city', 'update')
+            ->notEmptyString('city','Street cannot be empty');
 
         $validator
             ->scalar('state')
             ->maxLength('state', 10)
+            ->requirePresence('state', 'create')
+            ->requirePresence('state', 'update')
             ->notEmptyString('state','Please Select a state');
 
         $validator
             ->scalar('zip')
             ->maxLength('zip', 10)
-            ->allowEmptyString('zip');
+            ->notEmptyString('zip','Post Code cannot be empty');
 
         $validator
             ->requirePresence('password', 'create')
-            ->notEmptyString('password');
+            ->notEmptyString('password','Password cannot be empty');
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
-            ->notEmptyString('email')
+            ->requirePresence('email', 'update')
+            ->notEmptyString('email','Email cannot be empty')
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;

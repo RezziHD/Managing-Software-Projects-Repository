@@ -6,8 +6,9 @@
  */
 ?>
 <style>
-    .file {
-        border: none;
+    .error-message{
+        color: red;
+        padding-bottom: .5em;
     }
 </style>
 <div class="row">
@@ -24,12 +25,16 @@
     </aside>
     <div class="column column-80">
         <div class="staff form content">
-            <?= $this->Form->create($staff) ?>
+            <?= $this->Form->create($staff,['novalidate' => true]) ?>
             <fieldset>
                 <legend><?= __('Edit Staff') ?></legend>
                 <div class="container">
                     <div class="row">
-                        <div class="column"><?= $this->Form->control('first_name') ?></div>
+                        <div class="column"><?= $this->Form->control('first_name',
+                        ['error' => ['not long enough' => __('First name cannot be less than 3 characters'),
+                            'too long' => __('First name cannot be more than 50 characters'),
+                            'not empty' => __('First name cannot be Empty')
+                        ]]) ?></div>
                         <div class="column"><?= $this->Form->control('middle_name') ?></div>
                     </div>
                     <div class="row">
@@ -37,10 +42,10 @@
                     </div>
                     <div class="row">
                         <div class="column"><label for="date_of_birth">Date of Birth</label>
-                                <?= $this->Form->date('date_of_birth', [
-                                    'min' => date('Y') - 70,
-                                    'max' => date('Y') - 18,
-                                ]); ?></div>
+                            <?= $this->Form->date('date_of_birth', [
+                                'min' => date('Y') - 70,
+                                'max' => date('Y') - 18,
+                            ]); ?></div>
                     </div>
                     <div class="row">
                         <div class="column"><?= $this->Form->control('street') ?></div>
@@ -64,7 +69,7 @@
                         <div class="column"><?= $this->Form->control('zip') ?></div>
                     </div>
                     <div class="row">
-                        <div class="column"><?= $this->Form->control('email',['type' => 'email']) ?></div>
+                        <div class="column"><?= $this->Form->control('email', ['type' => 'email']) ?></div>
                     </div>
                 </div>
             </fieldset>
