@@ -62,9 +62,11 @@ class ProductsTable extends Table
     {
         $validator
             ->scalar('name')
-            ->maxLength('name', 255)
+            ->maxLength('name', 60,'too long')
+            ->minLength('name',3,'not long enough')
             ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->requirePresence('name', 'update')
+            ->notEmptyString('name', "not Empty");
 
         $validator
             ->scalar('supplier')
@@ -79,7 +81,9 @@ class ProductsTable extends Table
 
         $validator
             ->scalar('description')
-            ->allowEmptyString('description');
+            ->requirePresence('price', 'create')
+            ->requirePresence('price', 'update')
+            ->notEmptyString('description');
 
         return $validator;
     }

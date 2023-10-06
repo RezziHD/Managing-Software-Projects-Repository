@@ -22,7 +22,11 @@
                 <legend><?= __('Add Staff') ?></legend>
                 <div class="container">
                     <div class="row">
-                        <div class="column"><?= $this->Form->control('first_name') ?></div>
+                        <div class="column"><?= $this->Form->control('first_name',['error' => [
+                                                    'not long enough' => __('First name cannot be less than 3 characters'),
+                                                    'too long' => __('First name cannot be more than 50 characters'),
+                                                    'not empty' => __('First name cannot be Empty')
+                                                ]]) ?></div>
                         <div class="column"><?= $this->Form->control('middle_name') ?></div>
                     </div>
                     <div class="row">

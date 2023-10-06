@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -7,6 +8,7 @@ use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\I18n\DateTime;
 
 /**
  * Staff Model
@@ -65,69 +67,70 @@ class StaffTable extends Table
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator): Validator
-    {   
+    {
         $validator
             ->scalar('first_name')
-            ->maxLength('first_name', 50,'too long')
-            ->minLength('first_name',3,'not long enough')
+            ->maxLength('first_name', 50, 'too long')
+            ->minLength('first_name', 3, 'not long enough')
             ->requirePresence('first_name', 'create')
             ->requirePresence('first_name', 'update')
-            ->notEmptyString('first_name', "not Empty");
+            ->notEmptyString('first_name', "not empty");
 
         $validator
             ->scalar('middle_name')
-            ->maxLength('middle_name', 50, 'Middle name cannot be more than 50 characters')
+            ->maxLength('middle_name', 50, 'too long')
             ->allowEmptyString('middle_name');
 
         $validator
             ->scalar('last_name')
-            ->maxLength('last_name', 50,'Last name cannot be more than 50 characters')
-            ->minLength('first-name',2,'Last name cannot be less than 3 characters')
+            ->maxLength('last_name', 50, 'too long')
+            ->minLength('first-name', 2, 'not long enough')
             ->requirePresence('last_name', 'create')
             ->requirePresence('last_name', 'update')
-            ->notEmptyString('last_name','Last name cannot be empty');
+            ->notEmptyString('last_name', 'not empty');
 
         $validator
             ->date('date_of_birth')
             ->requirePresence('date_of_birth', 'create')
             ->requirePresence('date_of_birth', 'update')
-            ->notEmptyDate('date_of_birth','Date of Birth cannot be empty');
+            ->notEmptyDate('date_of_birth', 'not empty');
 
         $validator
             ->scalar('street')
-            ->maxLength('street', 255)
+            ->maxLength('street', 70, 'too long')
+            ->minLength('street', 5, 'not long enough')
             ->requirePresence('street', 'create')
             ->requirePresence('street', 'update')
-            ->notEmptyDate('street','Street cannot be empty');
+            ->notEmptyDate('street', 'not empty');
 
         $validator
             ->scalar('city')
             ->maxLength('city', 100)
             ->requirePresence('city', 'create')
             ->requirePresence('city', 'update')
-            ->notEmptyString('city','Street cannot be empty');
+            ->notEmptyString('city', 'Street cannot be empty');
 
         $validator
             ->scalar('state')
             ->maxLength('state', 10)
             ->requirePresence('state', 'create')
             ->requirePresence('state', 'update')
-            ->notEmptyString('state','Please Select a state');
+            ->notEmptyString('state', 'Please Select a state');
 
         $validator
             ->scalar('zip')
             ->maxLength('zip', 10)
-            ->notEmptyString('zip','Post Code cannot be empty');
+            ->notEmptyString('zip', 'Post Code cannot be empty');
 
         $validator
             ->requirePresence('password', 'create')
-            ->notEmptyString('password','Password cannot be empty');
+            ->notEmptyString('password', 'Password cannot be empty');
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
             ->requirePresence('email', 'update')
-            ->notEmptyString('email','Email cannot be empty')
+            ->notEmptyString('email', 'Email cannot be empty')
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
@@ -142,8 +145,28 @@ class StaffTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
+        $rules->add($rules->isUnique(['email'],['message'=>'Email is being used already for another staff']), ['errorField' => 'email']);
 
         return $rules;
     }
 }
+
+/*->add('date_of_birth', 'custom', [
+                'rule' => function ($value, $context) {
+                    if ($value) {
+                        return false;
+                    }
+                    $now = DateTime::now();
+                    $old = $value->addYears(100);
+                    $young = $value->addYears(18);
+
+                    if ($now > $old) {
+                        return 'too old';
+                    }
+                    if ($now < $young) {
+                        return 'too young';
+                    }
+                    return true;
+                },
+                'message' => 'Generic error message used when `false` is returned'
+            ])*/

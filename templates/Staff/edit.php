@@ -6,7 +6,7 @@
  */
 ?>
 <style>
-    .error-message{
+    .error-message {
         color: red;
         padding-bottom: .5em;
     }
@@ -25,30 +25,43 @@
     </aside>
     <div class="column column-80">
         <div class="staff form content">
-            <?= $this->Form->create($staff,['novalidate' => true]) ?>
+            <?= $this->Form->create($staff, ['novalidate' => true]) ?>
             <fieldset>
                 <legend><?= __('Edit Staff') ?></legend>
                 <div class="container">
                     <div class="row">
-                        <div class="column"><?= $this->Form->control('first_name',
-                        ['error' => ['not long enough' => __('First name cannot be less than 3 characters'),
-                            'too long' => __('First name cannot be more than 50 characters'),
-                            'not empty' => __('First name cannot be Empty')
-                        ]]) ?></div>
-                        <div class="column"><?= $this->Form->control('middle_name') ?></div>
+                        <div class="column"><?= $this->Form->control(
+                                                'first_name',
+                                                ['error' => [
+                                                    'not long enough' => __('First name cannot be less than 3 characters'),
+                                                    'too long' => __('First name cannot be more than 50 characters'),
+                                                    'not empty' => __('First name cannot be Empty')
+                                                ]]) ?></div>
+                        <div class="column"><?= $this->Form->control('middle_name', ['error' => [
+                                                'too long' => __('Middle name cannot be more than 50 characters')
+                                            ]]) ?></div>
                     </div>
                     <div class="row">
-                        <div class="column"><?= $this->Form->control('last_name') ?></div>
+                        <div class="column"><?= $this->Form->control('last_name', ['error' => [
+                                                'not long enough' => __('Last name cannot be less than 3 characters'),
+                                                'too long' => __('Last name cannot be more than 50 characters'),
+                                                'not empty' => __('Last name cannot be Empty')
+                                            ]]) ?></div>
                     </div>
                     <div class="row">
                         <div class="column"><label for="date_of_birth">Date of Birth</label>
-                            <?= $this->Form->date('date_of_birth', [
-                                'min' => date('Y') - 70,
-                                'max' => date('Y') - 18,
-                            ]); ?></div>
+                            <?= $this->Form->date('date_of_birth', ['error' => [
+                                'too old' => __('Cannot register if you are older than 100 years'),
+                                'too young' => __('Cannot register if you are younger than 18 years'),
+                                'not empty' => __('Date of Birth cannot be Empty')
+                            ]]) ?></div>
                     </div>
                     <div class="row">
-                        <div class="column"><?= $this->Form->control('street') ?></div>
+                        <div class="column"><?= $this->Form->control('street', ['error' => [
+                                                'not long enough' => __('Street cannot be less than 3 characters'),
+                                                'too long' => __('Street cannot be more than 50 characters'),
+                                                'not empty' => __('Street cannot be Empty')
+                                            ]]) ?></div>
                     </div>
                     <div class="row">
                         <div class="column"><?= $this->Form->control('city') ?></div>
