@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\Product $product
  */
 ?>
+<style>
+.error-message {
+	color: red;
+	padding-bottom: .5em;
+}
+</style>
 <div class="row">
     <aside class="column">
         <div class="side-nav">
@@ -16,17 +22,52 @@
             <?= $this->Html->link(__('List Products'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column column-80">
+   <div class="column column-80">
         <div class="products form content">
-            <?= $this->Form->create($product) ?>
+            <?= $this->Form->create($product, ['novalidate' => true]) ?>
             <fieldset>
                 <legend><?= __('Edit Product') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('supplier');
-                    echo $this->Form->control('price');
-                    echo $this->Form->control('description');
-                ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control(
+                            'name',
+                            ['error' => [
+                                'not long enough' => __('Name cannot be less than 3 characters'),
+                                'too long' => __('Name cannot be more than 50 characters'),
+                                'not empty' => __('Name cannot be empty')
+                            ]]
+                        ) ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control(
+                            'supplier',
+                            ['error' => [
+                                'not long enough' => __('Supplier cannot be less than 3 characters'),
+                                'too long' => __('Supplier cannot be more than 50 characters'),
+                                'not empty' => __('Supplier cannot be empty')
+                            ]]
+                        ) ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control(
+                            'price',
+                            ['error' => [
+                                'not valid' => __('Price must be a valid number'),
+                                'not empty' => __('Price cannot be empty')
+                            ]]
+                        ) ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control(
+                            'description',
+                            ['error' => [
+                                'not long enough' => __('Description cannot be less than 10 characters'),
+                                'too long' => __('Description cannot be more than 255 characters'),
+                                'not empty' => __('Description cannot be empty')
+                            ]]
+                        ) ?></div>
+                    </div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Validation\Validator; // Make sure to include this line
 
 /**
  * Member Entity
@@ -21,7 +22,9 @@ use Cake\ORM\Entity;
  */
 class Member extends Entity
 {
-    /**
+    // Define the public validationDefault method
+
+   /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
      * Note that when '*' is set to true, this allows all unspecified fields to

@@ -30,10 +30,10 @@
                     <td><?= h($sale->created) ?></td>
                     <td><?= h($sale->modified) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $sale->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $sale->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $sale->id], ['confirm' => __('Are you sure you want to delete # {0}?', $sale->id)]) ?>
-                    </td>
+    				<?= $this->Html->link('<span class="material-symbols-outlined">'.__('visibility').'</span>', ['action' => 'view', $sale->id], ['escape' => false]) ?>
+   				    <?= $this->Html->link('<span class="material-symbols-outlined">'. __('Edit'). '</span>', ['action' => 'edit', $sale->id], ['escape' => false]) ?>
+    		        <?= $this->Form->postLink('<span class="material-symbols-outlined">'.__('Delete').'</span>', ['action' => 'delete', $sale->id],['escape' => false], ['confirm' => __('Are you sure you want to delete # {0} {1}?', $sale->id, $sale->name)]) ?>
+				</td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

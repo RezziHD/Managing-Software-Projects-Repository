@@ -66,18 +66,22 @@ class ProductsTable extends Table
             ->minLength('name',3,'not long enough')
             ->requirePresence('name', 'create')
             ->requirePresence('name', 'update')
-            ->notEmptyString('name', "not Empty");
+            ->notEmptyString('name', "Please provide a product name");
 
         $validator
             ->scalar('supplier')
             ->maxLength('supplier', 255)
             ->requirePresence('supplier', 'create')
-            ->notEmptyString('supplier');
+            ->notEmptyString('supplier', "Please Provide a supplier");
 
         $validator
             ->decimal('price')
             ->requirePresence('price', 'create')
-            ->notEmptyString('price');
+            ->notEmptyString('price', "Please provide a number value")
+			->add('price', 'numeric', [
+        'rule' => 'numeric',
+        'message' => 'Price must be a valid number.'
+    ]);
 
         $validator
             ->scalar('description')

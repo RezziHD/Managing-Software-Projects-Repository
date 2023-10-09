@@ -49,8 +49,7 @@
                                             ]]) ?></div>
                     </div>
                     <div class="row">
-                        <div class="column"><label for="date_of_birth">Date of Birth</label>
-                            <?= $this->Form->date('date_of_birth', ['error' => [
+                        <div class="column"><?= $this->Form->control('date_of_birth', ['error' => [
                                 'too old' => __('Cannot register if you are older than 100 years'),
                                 'too young' => __('Cannot register if you are younger than 18 years'),
                                 'not empty' => __('Date of Birth cannot be Empty')

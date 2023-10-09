@@ -9,6 +9,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\I18n\DateTime;
+use Cake\I18n\Date;
 
 /**
  * Staff Model
@@ -89,11 +90,34 @@ class StaffTable extends Table
             ->requirePresence('last_name', 'update')
             ->notEmptyString('last_name', 'not empty');
 
-        $validator
-            ->date('date_of_birth')
-            ->requirePresence('date_of_birth', 'create')
-            ->requirePresence('date_of_birth', 'update')
-            ->notEmptyDate('date_of_birth', 'not empty');
+     	$validator
+    ->date('date_of_birth')
+    ->requirePresence('date_of_birth', 'create')
+    ->requirePresence('date_of_birth', 'update')
+    ->notEmptyDate('date_of_birth', 'Date of Birth cannot be empty')
+    ->add('date_of_birth', 'too young', [
+        'rule' => function ($value, $context) {
+            // Parse the date_of_birth string into a Date object
+            $dateOfBirth = new Date($value);
+            // Calculate the age based on the date_of_birth
+            $today = new Date();
+            $age = $today->diff($dateOfBirth)->y;
+            // Check if the person is at least 18 years old
+            return $age >= 18;
+        }
+    ])
+    ->add('date_of_birth', 'too old', [
+        'rule' => function ($value, $context) {
+            // Parse the date_of_birth string into a Date object
+            $dateOfBirth = new Date($value);
+            // Calculate the age based on the date_of_birth
+            $today = new Date();
+            $age = $today->diff($dateOfBirth)->y;
+            // Check if the person is not older than 100 years
+            return $age <= 100;
+        }
+    ]);
+
 
         $validator
             ->scalar('street')
@@ -120,7 +144,10 @@ class StaffTable extends Table
         $validator
             ->scalar('zip')
             ->maxLength('zip', 10)
-            ->notEmptyString('zip', 'Post Code cannot be empty');
+			->add('zip', 'validZip', [
+        'rule' => ['custom', '/^\d{4}$/'],
+        'message' => 'Zip code must be 4 digits.',
+    ]);
 
         $validator
             ->requirePresence('password', 'create')

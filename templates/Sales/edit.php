@@ -20,14 +20,32 @@
     </aside>
     <div class="column column-80">
         <div class="sales form content">
-            <?= $this->Form->create($sale) ?>
+            <?= $this->Form->create($sale,  ['novalidate' => true]) ?>
             <fieldset>
                 <legend><?= __('Edit Sale') ?></legend>
-                <?php
-                    echo $this->Form->control('member_id', ['options' => $members]);
-                    echo $this->Form->control('staff_id', ['options' => $staff]);
-                    echo $this->Form->control('sale_date');
-                ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="column">
+                            <?= $this->Form->control('member_id', ['error' => [
+                                'not empty' => __('Member cannot be empty')
+                            ]]) ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <?= $this->Form->control('staff_id', ['options' => $staff, 'error' => [
+                                'not empty' => __('Staff cannot be empty')
+                            ]]) ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <?= $this->Form->control('sale_date', ['error' => [
+                                'not empty' => __('Sale date cannot be empty')
+                            ]]) ?>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

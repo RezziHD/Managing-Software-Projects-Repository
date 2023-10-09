@@ -29,11 +29,11 @@
                     <td><?= $this->Number->format($product->price) ?></td>
                     <td><?= h($product->created) ?></td>
                     <td><?= h($product->modified) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $product->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $product->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $product->id], ['confirm' => __('Are you sure you want to delete # {0}?', $product->id)]) ?>
-                    </td>
+                     <td class="actions">
+    				<?= $this->Html->link('<span class="material-symbols-outlined">'.__('visibility').'</span>', ['action' => 'view', $product->id], ['escape' => false]) ?>
+   				    <?= $this->Html->link('<span class="material-symbols-outlined">'. __('Edit'). '</span>', ['action' => 'edit', $product->id], ['escape' => false]) ?>
+    		        <?= $this->Form->postLink('<span class="material-symbols-outlined">'.__('Delete').'</span>', ['action' => 'delete', $product->id],['escape' => false], ['confirm' => __('Are you sure you want to delete # {0} {1}?', $product->id, $product->name)]) ?>
+				</td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
