@@ -41,10 +41,10 @@ $Description = 'Go To Grocery';
             <a href="<?= $this->Url->build('/') ?>"><span>Go</span> To <span>Groceries</span></a>
         </div>
         <div class="top-nav-links">
+            <?= $this->Html->link('Sales', ['controller' => 'Sales', 'action' => 'index']) ?>
+            <?= $this->Html->link('Members', ['controller'=> 'Members', 'action' => 'index']) ?>
             <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index']) ?>
             <?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index']) ?>
-            <?= $this->Html->link('Sales', ['controller' => 'Sales', 'action' => 'index']) ?>
-			<?= $this->Html->link('Members', ['controller'=> 'Members', 'action' => 'index']) ?>
         </div>
     </nav>
     <main class="main">
