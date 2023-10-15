@@ -38,7 +38,7 @@ $Description = 'Go To Grocery';
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
+            <a href="<?= $this->Url->build('/') ?>"><span>Go</span> To <span>Groceries</span></a>
         </div>
         <div class="top-nav-links">
             <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index']) ?>
