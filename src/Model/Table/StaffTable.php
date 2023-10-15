@@ -90,35 +90,33 @@ class StaffTable extends Table
             ->requirePresence('last_name', 'update')
             ->notEmptyString('last_name', 'not empty');
 
-     	$validator
-    ->date('date_of_birth')
-    ->requirePresence('date_of_birth', 'create')
-    ->requirePresence('date_of_birth', 'update')
-    ->notEmptyDate('date_of_birth', 'Date of Birth cannot be empty')
-    ->add('date_of_birth', 'too young', [
-        'rule' => function ($value, $context) {
-            // Parse the date_of_birth string into a Date object
-            $dateOfBirth = new Date($value);
-            // Calculate the age based on the date_of_birth
-            $today = new Date();
-            $age = $today->diff($dateOfBirth)->y;
-            // Check if the person is at least 18 years old
-            return $age >= 18;
-        }
-    ])
-    ->add('date_of_birth', 'too old', [
-        'rule' => function ($value, $context) {
-            // Parse the date_of_birth string into a Date object
-            $dateOfBirth = new Date($value);
-            // Calculate the age based on the date_of_birth
-            $today = new Date();
-            $age = $today->diff($dateOfBirth)->y;
-            // Check if the person is not older than 100 years
-            return $age <= 100;
-        }
-    ]);
-
-
+        $validator
+            ->date('date_of_birth')
+            ->requirePresence('date_of_birth', 'create')
+            ->requirePresence('date_of_birth', 'update')
+            ->notEmptyDate('date_of_birth', 'Date of Birth cannot be empty')
+            ->add('date_of_birth', 'too young', [
+                'rule' => function ($value, $context) {
+                    // Parse the date_of_birth string into a Date object
+                    $dateOfBirth = new Date($value);
+                    // Calculate the age based on the date_of_birth
+                    $today = new Date();
+                    $age = $today->diff($dateOfBirth)->y;
+                    // Check if the person is at least 18 years old
+                    return $age >= 18;
+                }
+            ])
+            ->add('date_of_birth', 'too old', [
+                'rule' => function ($value, $context) {
+                    // Parse the date_of_birth string into a Date object
+                    $dateOfBirth = new Date($value);
+                    // Calculate the age based on the date_of_birth
+                    $today = new Date();
+                    $age = $today->diff($dateOfBirth)->y;
+                    // Check if the person is not older than 100 years
+                    return $age <= 100;
+                }
+            ]);
         $validator
             ->scalar('street')
             ->maxLength('street', 70, 'too long')
@@ -129,10 +127,11 @@ class StaffTable extends Table
 
         $validator
             ->scalar('city')
-            ->maxLength('city', 100)
+            ->maxLength('city', 70, 'too long')
+            ->minLength('city', 5, 'not long enough')
             ->requirePresence('city', 'create')
             ->requirePresence('city', 'update')
-            ->notEmptyString('city', 'Street cannot be empty');
+            ->notEmptyString('city', 'not empty');
 
         $validator
             ->scalar('state')
@@ -144,10 +143,10 @@ class StaffTable extends Table
         $validator
             ->scalar('zip')
             ->maxLength('zip', 10)
-			->add('zip', 'validZip', [
-        'rule' => ['custom', '/^\d{4}$/'],
-        'message' => 'Zip code must be 4 digits.',
-    ]);
+            ->add('zip', 'validZip', [
+                'rule' => ['custom', '/^\d{4}$/'],
+                'message' => 'Postcode code must be 4 digits.',
+            ]);
 
         $validator
             ->requirePresence('password', 'create')
@@ -158,7 +157,8 @@ class StaffTable extends Table
             ->requirePresence('email', 'create')
             ->requirePresence('email', 'update')
             ->notEmptyString('email', 'Email cannot be empty')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
+            ->add('email', 'valid_email', ['rule' => 'email', 'message' => 'Invalid email']);
 
         return $validator;
     }
@@ -172,7 +172,7 @@ class StaffTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['email'],['message'=>'Email is being used already for another staff']), ['errorField' => 'email']);
+        $rules->add($rules->isUnique(['email'], ['message' => 'Email is being used already for another staff']), ['errorField' => 'email']);
 
         return $rules;
     }

@@ -63,7 +63,11 @@
                                             ]]) ?></div>
                     </div>
                     <div class="row">
-                        <div class="column"><?= $this->Form->control('city') ?></div>
+                        <div class="column"><?= $this->Form->control('city', ['error' => [
+                                                'not long enough' => __('City cannot be less than 3 characters'),
+                                                'too long' => __('City cannot be more than 50 characters'),
+                                                'not empty' => __('City cannot be Empty')
+                                            ]]) ?></div>
                         <div class="column"><label for="state">State</label>
                             <?= $this->Form->select(
                                 'state',
@@ -75,7 +79,8 @@
                                     'SA' => 'SA',
                                     'TAS' => 'TAS',
                                     'ACT' => 'ACT',
-                                    'NT' => 'NT'
+                                    'NT' => 'NT',
+                                    'empty' => '(choose one)'
                                 ],
                             ) ?></div>
                         <div class="column"><?= $this->Form->control('zip') ?></div>
