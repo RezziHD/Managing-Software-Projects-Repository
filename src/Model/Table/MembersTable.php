@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -44,9 +45,7 @@ class MembersTable extends Table
         parent::initialize($config);
 
         $this->setTable('members');
-
-        $this->setDisplayField('id');
-
+        $this->setDisplayField('first_name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -62,7 +61,7 @@ class MembersTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-public function validationDefault(Validator $validator): Validator
+    public function validationDefault(Validator $validator): Validator
     {
         $validator
             ->scalar('first_name')
@@ -85,33 +84,33 @@ public function validationDefault(Validator $validator): Validator
             ->requirePresence('last_name', 'update')
             ->notEmptyString('last_name', 'not empty');
 
-     	$validator
-    ->date('date_of_birth')
-    ->requirePresence('date_of_birth', 'create')
-    ->requirePresence('date_of_birth', 'update')
-    ->notEmptyDate('date_of_birth', 'Date of Birth cannot be empty')
-    ->add('date_of_birth', 'too young', [
-        'rule' => function ($value, $context) {
-            // Parse the date_of_birth string into a Date object
-            $dateOfBirth = new Date($value);
-            // Calculate the age based on the date_of_birth
-            $today = new Date();
-            $age = $today->diff($dateOfBirth)->y;
-            // Check if the person is at least 18 years old
-            return $age >= 18;
-        }
-    ])
-    ->add('date_of_birth', 'too old', [
-        'rule' => function ($value, $context) {
-            // Parse the date_of_birth string into a Date object
-            $dateOfBirth = new Date($value);
-            // Calculate the age based on the date_of_birth
-            $today = new Date();
-            $age = $today->diff($dateOfBirth)->y;
-            // Check if the person is not older than 100 years
-            return $age <= 100;
-        }
-    ]);
+        $validator
+            ->date('date_of_birth')
+            ->requirePresence('date_of_birth', 'create')
+            ->requirePresence('date_of_birth', 'update')
+            ->notEmptyDate('date_of_birth', 'Date of Birth cannot be empty')
+            ->add('date_of_birth', 'too young', [
+                'rule' => function ($value, $context) {
+                    // Parse the date_of_birth string into a Date object
+                    $dateOfBirth = new Date($value);
+                    // Calculate the age based on the date_of_birth
+                    $today = new Date();
+                    $age = $today->diff($dateOfBirth)->y;
+                    // Check if the person is at least 18 years old
+                    return $age >= 18;
+                }
+            ])
+            ->add('date_of_birth', 'too old', [
+                'rule' => function ($value, $context) {
+                    // Parse the date_of_birth string into a Date object
+                    $dateOfBirth = new Date($value);
+                    // Calculate the age based on the date_of_birth
+                    $today = new Date();
+                    $age = $today->diff($dateOfBirth)->y;
+                    // Check if the person is not older than 100 years
+                    return $age <= 100;
+                }
+            ]);
 
 
         $validator
@@ -124,10 +123,11 @@ public function validationDefault(Validator $validator): Validator
 
         $validator
             ->scalar('city')
-            ->maxLength('city', 100)
+            ->maxLength('city', 70, 'too long')
+            ->minLength('city', 3, 'not long enough')
             ->requirePresence('city', 'create')
             ->requirePresence('city', 'update')
-            ->notEmptyString('city', 'Street cannot be empty');
+            ->notEmptyString('city', 'not empty');
 
         $validator
             ->scalar('state')
@@ -139,21 +139,19 @@ public function validationDefault(Validator $validator): Validator
         $validator
             ->scalar('zip')
             ->maxLength('zip', 10)
-			->add('zip', 'validZip', [
-        'rule' => ['custom', '/^\d{4}$/'],
-        'message' => 'Zip code must be 4 digits.',
-    ]);
-
-        $validator
-            ->requirePresence('password', 'create')
-            ->notEmptyString('password', 'Password cannot be empty');
+            ->add('zip', 'validZip', [
+                'rule' => ['custom', '/^\d{4}$/'],
+                'message' => 'Zip code must be 4 digits.',
+            ]);
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
             ->requirePresence('email', 'update')
             ->notEmptyString('email', 'Email cannot be empty')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
+            ->add('email', 'valid_email', ['rule' => 'email', 'message' => 'Invalid email']);
+
 
         return $validator;
     }
@@ -166,7 +164,7 @@ public function validationDefault(Validator $validator): Validator
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
+        $rules->add($rules->isUnique(['email'],['message' => 'Email is being used already for another staff']), ['errorField' => 'email']);
 
         return $rules;
     }

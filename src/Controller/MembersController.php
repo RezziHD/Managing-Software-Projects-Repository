@@ -32,9 +32,7 @@ class MembersController extends AppController
      */
     public function view($id = null)
     {
-        $member = $this->Members->get($id, [
-            'contain' => ['Sales'],
-        ]);
+        $member = $this->Members->get($id,['contain' => ['Sales'],]);
 
         $this->set(compact('member'));
     }

@@ -13,10 +13,14 @@ use Cake\Validation\Validator; // Make sure to include this line
  * @property string $first_name
  * @property string|null $middle_name
  * @property string $last_name
- * @property \Cake\I18n\FrozenDate $date_of_birth
+ * @property \Cake\I18n\Date $date_of_birth
+ * @property string|null $street
+ * @property string|null $city
+ * @property string|null $state
+ * @property string|null $zip
  * @property string $email
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
  *
  * @property \App\Model\Entity\Sale[] $sales
  */
@@ -38,6 +42,10 @@ class Member extends Entity
         'middle_name' => true,
         'last_name' => true,
         'date_of_birth' => true,
+        'street' => true,
+        'city' => true,
+        'state' => true,
+        'zip' => true,
         'email' => true,
         'created' => true,
         'modified' => true,

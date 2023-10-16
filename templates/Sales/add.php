@@ -1,5 +1,5 @@
 <?php
-
+use Cake\I18n\DateTime;
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Sale $sale
@@ -21,11 +21,15 @@ $prodJSON=json_encode($products)
             <?= $this->Form->create($sale) ?>
             <fieldset>
                 <legend><?= __('Add Sale') ?></legend>
-                <?php
-                echo $this->Form->control('member_id', ['options' => $members]);
-                echo $this->Form->control('staff_id', ['options' => $staff]);
-                echo $this->Form->control('sale_date');
-                ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control('member_id', ['options' => $members])?></div>
+                        <div class="column"><?= $this->Form->control('staff_id', ['options' => $staff]); ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"><?= $this->Form->control('sale_date',['value'=> DateTime::now(),'readonly'=>'true']) ?></div>
+                        <div class="column"></div><div class="column"></div>
+                    </div>
                 <button type="button" name="add" id="add">Add Product</button>
                 <table id="dynamic_field">
                 </table>
