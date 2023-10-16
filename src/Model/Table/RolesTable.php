@@ -49,6 +49,7 @@ class RolesTable extends Table
 
         $this->belongsToMany('Staff', [
             'foreignKey' => 'role_id',
+            'bindingKey'=>'id',
             'targetForeignKey' => 'staff_id',
             'joinTable' => 'staff_roles',
         ]);

@@ -92,10 +92,8 @@
                     </div>
                     <div class="row">
                         <div class="column">
-                            <?= $this->Form->control('roles', [
-                                'type' => 'select',
-                                'options' => $roles,
-                            ]) ?></div>
+                            <?= $this->Form->control('roles.0.id', ['label'=>'Role','type'=>'select','options' => $roles ]) ?>
+                        </div>
                     </div>
                 </div>
             </fieldset>

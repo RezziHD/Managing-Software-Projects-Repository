@@ -56,9 +56,9 @@ class StaffTable extends Table
         ]);
         $this->belongsToMany('Roles', [
             'foreignKey' => 'staff_id',
+            'bindingKey'=>'id',
             'targetForeignKey' => 'role_id',
             'joinTable' => 'staff_roles',
-            'saveStrategy'=>'append',
         ]);
     }
 
