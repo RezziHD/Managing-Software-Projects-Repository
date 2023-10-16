@@ -74,6 +74,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             $this->addPlugin('DebugKit');
         }
 
+        $this->addPlugin('Authentication');
         // Load more plugins here
     }
 
@@ -122,7 +123,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
         $authenticationService = new AuthenticationService([
-            'unauthenticatedRedirect' => Router::url('/users/login'),
+            'unauthenticatedRedirect' => Router::url('/staff/login'),
             'queryParam' => 'redirect',
         ]);
 
@@ -131,6 +132,10 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             'fields' => [
                 'username' => 'email',
                 'password' => 'password',
+            ],
+            'resolver'=>[
+                'className' => 'Authentication.Orm',
+                'userModel'=>'Staff',
             ],
         ]);
 
@@ -142,7 +147,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 'username' => 'email',
                 'password' => 'password',
             ],
-            'loginUrl' => Router::url('/users/login'),
+            'loginUrl' => Router::url('/staff/login'),
         ]);
 
         return $authenticationService;
