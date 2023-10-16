@@ -3,6 +3,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Staff $staff
+ * @var \Cake\Collection\CollectionInterface|string[] $roles
  */
 ?>
 <style>
@@ -86,6 +87,11 @@
                     </div>
                     <div class="row">
                         <div class="column"><?= $this->Form->control('password') ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <?= $this->Form->control('roles._ids', ['options' => $roles]) ?>
+                        </div>
                     </div>
                 </div>
             </fieldset>

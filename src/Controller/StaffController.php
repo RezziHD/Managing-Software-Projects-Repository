@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -32,9 +33,7 @@ class StaffController extends AppController
      */
     public function view($id = null)
     {
-        $staff = $this->Staff->get($id, [
-            'contain' => [],
-        ]);
+        $staff = $this->Staff->get($id, ['contain' => ['Roles']]);
 
         $this->set(compact('staff'));
     }
@@ -48,7 +47,7 @@ class StaffController extends AppController
     {
         $staff = $this->Staff->newEmptyEntity();
         if ($this->request->is('post')) {
-            $staff = $this->Staff->patchEntity($staff, $this->request->getData());
+            $staff = $this->Staff->patchEntity($staff, $this->request->getData(), ['associated' => ['Roles']]);
             if ($this->Staff->save($staff)) {
                 $this->Flash->success(__('The staff has been saved.'));
 
@@ -56,7 +55,8 @@ class StaffController extends AppController
             }
             $this->Flash->error(__('The staff could not be saved. Please, try again.'));
         }
-        $this->set(compact('staff'));
+        $roles = $this->Staff->Roles->find('list', limit: 200)->all();
+        $this->set(compact('staff', 'roles'));
     }
 
     /**
@@ -69,10 +69,14 @@ class StaffController extends AppController
     public function edit($id = null)
     {
         $staff = $this->Staff->get($id, [
-            'contain' => [],
+            'contain' => ['Roles'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $staff = $this->Staff->patchEntity($staff, $this->request->getData());
+            $staff = $this->Staff->patchEntity(
+                $staff,
+                $this->request->getData(),
+                ['associated' => ['Roles']]
+            );
             if ($this->Staff->save($staff)) {
                 $this->Flash->success(__('The staff has been saved.'));
 
@@ -80,7 +84,8 @@ class StaffController extends AppController
             }
             $this->Flash->error(__('The staff could not be saved. Please, try again.'));
         }
-        $this->set(compact('staff'));
+        $roles = $this->Staff->Roles->find('list', limit: 200)->all();
+        $this->set(compact('staff', 'roles'));
     }
 
     /**

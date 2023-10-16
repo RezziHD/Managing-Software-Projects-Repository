@@ -3,6 +3,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Staff $staff
+ * @var \Cake\Collection\CollectionInterface|string[] $roles
  */
 ?>
 <style>
@@ -36,7 +37,8 @@
                                                     'not long enough' => __('First name cannot be less than 3 characters'),
                                                     'too long' => __('First name cannot be more than 50 characters'),
                                                     'not empty' => __('First name cannot be Empty')
-                                                ]]) ?></div>
+                                                ]]
+                                            ) ?></div>
                         <div class="column"><?= $this->Form->control('middle_name', ['error' => [
                                                 'too long' => __('Middle name cannot be more than 50 characters')
                                             ]]) ?></div>
@@ -50,10 +52,10 @@
                     </div>
                     <div class="row">
                         <div class="column"><?= $this->Form->control('date_of_birth', ['error' => [
-                                'too old' => __('Cannot register if you are older than 100 years'),
-                                'too young' => __('Cannot register if you are younger than 18 years'),
-                                'not empty' => __('Date of Birth cannot be Empty')
-                            ]]) ?></div>
+                                                'too old' => __('Cannot register if you are older than 100 years'),
+                                                'too young' => __('Cannot register if you are younger than 18 years'),
+                                                'not empty' => __('Date of Birth cannot be Empty')
+                                            ]]) ?></div>
                     </div>
                     <div class="row">
                         <div class="column"><?= $this->Form->control('street', ['error' => [
@@ -87,6 +89,13 @@
                     </div>
                     <div class="row">
                         <div class="column"><?= $this->Form->control('email', ['type' => 'email']) ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <?= $this->Form->control('roles', [
+                                'type' => 'select',
+                                'options' => $roles,
+                            ]) ?></div>
                     </div>
                 </div>
             </fieldset>

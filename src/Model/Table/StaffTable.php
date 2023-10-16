@@ -58,6 +58,7 @@ class StaffTable extends Table
             'foreignKey' => 'staff_id',
             'targetForeignKey' => 'role_id',
             'joinTable' => 'staff_roles',
+            'saveStrategy'=>'append',
         ]);
     }
 
@@ -128,7 +129,7 @@ class StaffTable extends Table
         $validator
             ->scalar('city')
             ->maxLength('city', 70, 'too long')
-            ->minLength('city', 5, 'not long enough')
+            ->minLength('city', 3, 'not long enough')
             ->requirePresence('city', 'create')
             ->requirePresence('city', 'update')
             ->notEmptyString('city', 'not empty');
@@ -177,23 +178,3 @@ class StaffTable extends Table
         return $rules;
     }
 }
-
-/*->add('date_of_birth', 'custom', [
-                'rule' => function ($value, $context) {
-                    if ($value) {
-                        return false;
-                    }
-                    $now = DateTime::now();
-                    $old = $value->addYears(100);
-                    $young = $value->addYears(18);
-
-                    if ($now > $old) {
-                        return 'too old';
-                    }
-                    if ($now < $young) {
-                        return 'too young';
-                    }
-                    return true;
-                },
-                'message' => 'Generic error message used when `false` is returned'
-            ])*/

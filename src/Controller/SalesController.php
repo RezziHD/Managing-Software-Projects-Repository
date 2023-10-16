@@ -70,7 +70,7 @@ class SalesController extends AppController
      */
     public function edit($id = null)
     {
-        $sale = $this->Sales->get($id, contain: []);
+        $sale = $this->Sales->get($id, ['contain' => ['Members', 'Staff', 'SaleLines']]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $sale = $this->Sales->patchEntity($sale, $this->request->getData());
             if ($this->Sales->save($sale)) {
