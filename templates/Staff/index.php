@@ -20,9 +20,9 @@
                     <!--<th><?= $this->Paginator->sort('street') ?></th>
                     <th><?= $this->Paginator->sort('city') ?></th>
                     <th><?= $this->Paginator->sort('state') ?></th>
-                    <th><?= $this->Paginator->sort('zip') ?></th>-->
+                    <th><?= $this->Paginator->sort('zip') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>-->
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -41,9 +41,9 @@
                     <!--<td><?= h($staff->street) ?></td>
                     <td><?= h($staff->city) ?></td>
                     <td><?= h($staff->state) ?></td>
-                    <td><?= h($staff->zip) ?></td>-->
+                    <td><?= h($staff->zip) ?></td>
                     <td><?= h($staff->created) ?></td>
-                    <td><?= h($staff->modified) ?></td>
+                    <td><?= h($staff->modified) ?></td>-->
                     <td class="actions">
                         <?= $this->Html->link('<span class="material-symbols-outlined">'.__('visibility').'</span>', ['action' => 'view', $staff->id], ['escape' => false]) ?>
                         <?= $this->Html->link('<span class="material-symbols-outlined">'. __('Edit'). '</span>', ['action' => 'edit', $staff->id], ['escape' => false]) ?>

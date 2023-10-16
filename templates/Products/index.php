@@ -15,27 +15,31 @@
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('supplier') ?></th>
                     <th><?= $this->Paginator->sort('price') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
+                    <!--<th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>-->
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($products as $product): ?>
+            <?php if (count($products)==0): ?>
+                    <tr><td colspan="12">No Products in the database</td></tr>
+                <?php else: 
+                     foreach ($products as $product): ?>
                 <tr>
                     <td><?= $this->Number->format($product->id) ?></td>
                     <td><?= h($product->name) ?></td>
                     <td><?= h($product->supplier) ?></td>
                     <td><?= $this->Number->format($product->price) ?></td>
-                    <td><?= h($product->created) ?></td>
-                    <td><?= h($product->modified) ?></td>
+                    <!--<td><?= h($product->created) ?></td>
+                    <td><?= h($product->modified) ?></td>-->
                      <td class="actions">
     				<?= $this->Html->link('<span class="material-symbols-outlined">'.__('visibility').'</span>', ['action' => 'view', $product->id], ['escape' => false]) ?>
    				    <?= $this->Html->link('<span class="material-symbols-outlined">'. __('Edit'). '</span>', ['action' => 'edit', $product->id], ['escape' => false]) ?>
     		        <?= $this->Form->postLink('<span class="material-symbols-outlined">'.__('Delete').'</span>', ['action' => 'delete', $product->id],['escape' => false], ['confirm' => __('Are you sure you want to delete # {0} {1}?', $product->id, $product->name)]) ?>
 				</td>
                 </tr>
-                <?php endforeach; ?>
+                <?php endforeach; 
+                endif;?>
             </tbody>
         </table>
     </div>

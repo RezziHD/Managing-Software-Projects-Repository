@@ -1,14 +1,15 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Member $member
  */
 ?>
 <style>
-.error-message {
-	color: red;
-	padding-bottom: .5em;
-}
+    .error-message {
+        color: red;
+        padding-bottom: .5em;
+    }
 </style>
 <div class="row">
     <aside class="column">
@@ -25,17 +26,15 @@
     <div class="column column-80">
         <div class="members form content">
             <?= $this->Form->create($member, ['novalidate' => true]) ?>
-           <fieldset>
+            <fieldset>
                 <legend><?= __('Edit Members') ?></legend>
                 <div class="container">
                     <div class="row">
-                        <div class="column"><?= $this->Form->control(
-                                                'first_name',
-                                                ['error' => [
-                                                    'not long enough' => __('First name cannot be less than 3 characters'),
-                                                    'too long' => __('First name cannot be more than 50 characters'),
-                                                    'not empty' => __('First name cannot be Empty')
-                                                ]]) ?></div>
+                        <div class="column"><?= $this->Form->control('first_name', ['error' => [
+                                                'not long enough' => __('First name cannot be less than 3 characters'),
+                                                'too long' => __('First name cannot be more than 50 characters'),
+                                                'not empty' => __('First name cannot be Empty')
+                                            ]]) ?></div>
                         <div class="column"><?= $this->Form->control('middle_name', ['error' => [
                                                 'too long' => __('Middle name cannot be more than 50 characters')
                                             ]]) ?></div>
@@ -49,10 +48,10 @@
                     </div>
                     <div class="row">
                         <div class="column"><?= $this->Form->control('date_of_birth', ['error' => [
-                                'too old' => __('Cannot register if you are older than 100 years'),
-                                'too young' => __('Cannot register if you are younger than 18 years'),
-                                'not empty' => __('Date of Birth cannot be Empty'),
-                            ]]) ?></div>
+                                                'too old' => __('Cannot register if you are older than 100 years'),
+                                                'too young' => __('Cannot register if you are younger than 18 years'),
+                                                'not empty' => __('Date of Birth cannot be Empty'),
+                                            ]]) ?></div>
                     </div>
                     <div class="row">
                         <div class="column"><?= $this->Form->control('street', ['error' => [
@@ -62,7 +61,11 @@
                                             ]]) ?></div>
                     </div>
                     <div class="row">
-                        <div class="column"><?= $this->Form->control('city') ?></div>
+                        <div class="column"><?= $this->Form->control('city', ['error' => [
+                                                'not long enough' => __('City cannot be less than 3 characters'),
+                                                'too long' => __('City cannot be more than 50 characters'),
+                                                'not empty' => __('City cannot be Empty')
+                                            ]]) ?></div>
                         <div class="column"><label for="state">State</label>
                             <?= $this->Form->select(
                                 'state',
@@ -76,11 +79,12 @@
                                     'ACT' => 'ACT',
                                     'NT' => 'NT'
                                 ],
+                                ['empty' => 'Select State']
                             ) ?></div>
 
                         <div class="column"><?= $this->Form->control('zip', ['error' => [
-							'validZip'=> 'Zip Code must be 4 digits'
-						]]) ?></div>
+                                                'validZip' => 'Zip Code must be 4 digits'
+                                            ]]) ?></div>
 
                     </div>
                     <div class="row">
@@ -91,5 +95,5 @@
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>
-   </div>
+    </div>
 </div>
