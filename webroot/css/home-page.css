@@ -1,0 +1,84 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	overflow: hidden;
+	/* Hide horizontal scrollbar */
+}
+
+.text-overlay {
+	top: 50%;
+	left: 275%;
+	color: white;
+	font-size: 3vw;
+	/* Use relative font size */
+	z-index: 1;
+	/* Place the text overlay above the image */
+}
+
+
+.slider-container {
+    width: 100%; /* Set the width to 100% for full-width */
+    height: 100%; /* Set the height to 100% for full-height */
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+.slider {
+	white-space: nowrap;
+	font-size: 0;
+	transition: transform 0.5s ease;
+}
+
+.slider img {
+	width: 100%;
+}
+
+.swiper-slide {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	position: relative;
+	/* Ensure text content appears on top of the image */
+}
+
+.slide-content {
+	background: rgba(0, 0, 0, 0.75);
+	/* Semi-transparent background for text */
+	color: white;
+	/* Text color */
+	padding: 10px;
+	/* Add some padding for text content */
+	border-radius: 10px;
+	/* Add rounded corners for the background */
+}
+
+/* Use media queries for different screen sizes */
+@media screen and (max-width: 768px) {
+	.text-overlay {
+		font-size: 6vw;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.text-overlay {
+		font-size: 8vw;
+	}
+}
