@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Entity;
@@ -36,11 +37,13 @@ class SaleLine extends Entity
         'modified' => true,
         'sale' => true,
         'product' => true,
-        'line_number'=>true,
+        'line_number' => true,
     ];
     protected array $_virtual = ['line_price'];
 
-    protected function _getLinePrice(){
-        return ((float)$this->product->price) * $this->quantity;
+    protected function _getLinePrice()
+    {
+        if ($this->product != null)
+            return ((float)$this->product->price) * $this->quantity;
     }
 }

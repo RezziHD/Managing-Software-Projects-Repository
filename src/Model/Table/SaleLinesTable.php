@@ -47,6 +47,11 @@ class SaleLinesTable extends Table
         $this->setPrimaryKey(['sale_id', 'line_number']);
 
         $this->addBehavior('Timestamp');
+        
+        $this->belongsTo('Sales', [
+            'foreignKey' => 'sale_id',
+            'joinType' => 'INNER',
+        ]);
 
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id',

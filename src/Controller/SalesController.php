@@ -72,7 +72,7 @@ class SalesController extends AppController
     {
         $sale = $this->Sales->get($id, ['contain' => ['Members', 'Staff', 'SaleLines.Products']]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $sale = $this->Sales->patchEntity($sale, $this->request->getData());
+            $sale = $this->Sales->patchEntity($sale, $this->request->getData(), ['associated' => 'SaleLines.Products']);
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
 
@@ -82,7 +82,8 @@ class SalesController extends AppController
         }
         $members = $this->Sales->Members->find('list', limit: 200)->all();
         $staff = $this->Sales->Staff->find('list', limit: 200)->all();
-        $this->set(compact('sale', 'members', 'staff'));
+        $products = $this->Sales->SaleLines->Products->find('list', limit: 200)->all();
+        $this->set(compact('sale', 'members', 'staff','products'));
     }
 
     /**

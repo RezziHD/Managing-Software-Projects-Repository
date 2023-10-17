@@ -29,10 +29,6 @@ use App\Model\Entity\Product;
                     <td><?= $sale->hasValue('staff') ? $this->Html->link($sale->staff->first_name, ['controller' => 'Staff', 'action' => 'view', $sale->staff->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($sale->id) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Sale Date') ?></th>
                     <td><?= h($sale->sale_date) ?></td>
                 </tr>
