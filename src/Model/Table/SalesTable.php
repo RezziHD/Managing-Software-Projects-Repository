@@ -72,11 +72,11 @@ class SalesTable extends Table
     {
         $validator
             ->integer('member_id')
-            ->notEmptyString('member_id');
+            ->notEmptyString('member_id',"Member cannot be Empty");
 
         $validator
             ->integer('staff_id')
-            ->notEmptyString('staff_id');
+            ->notEmptyString('staff_id',"Staff cannot be Empty");
 
         $validator
             ->date('sale_date')

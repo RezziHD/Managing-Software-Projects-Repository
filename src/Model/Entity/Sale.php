@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Entity;
@@ -43,11 +44,14 @@ class Sale extends Entity
 
     protected array $_virtual = ['total_price'];
 
-    protected function _getTotalPrice(){
-        $sum=0;
-        foreach($this->sale_lines as $saleLine):
-            $sum+=$saleLine->get('line_price');
-        endforeach;
+    protected function _getTotalPrice()
+    {
+        $sum = 0;
+        if ($this->sale_lines != null) :
+            foreach ($this->sale_lines as $saleLine) :
+                $sum += $saleLine->get('line_price');
+            endforeach;
+        endif;
         return $sum;
     }
 }

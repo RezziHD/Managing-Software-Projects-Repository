@@ -35,7 +35,7 @@
                     <td class="actions">
     				<?= $this->Html->link('<span class="material-symbols-outlined">'.__('visibility').'</span>', ['action' => 'view', $sale->id], ['escape' => false]) ?>
    				    <?= $this->Html->link('<span class="material-symbols-outlined">'. __('Edit'). '</span>', ['action' => 'edit', $sale->id], ['escape' => false]) ?>
-    		        <?= $this->Form->postLink('<span class="material-symbols-outlined">'.__('Delete').'</span>', ['action' => 'delete', $sale->id],['escape' => false], ['confirm' => __('Are you sure you want to delete # {0} {1}?', $sale->id, $sale->name)]) ?>
+    		        <!--?= $this->Form->postLink('<span class="material-symbols-outlined">'.__('Delete').'</span>', ['action' => 'delete', $sale->id],['escape' => false], ['confirm' => __('Are you sure you want to delete # {0} {1}?', $sale->id, $sale->name)]) ?-->
 				</td>
                 </tr>
                 <?php endforeach; 

@@ -47,7 +47,7 @@ class SaleLinesTable extends Table
         $this->setPrimaryKey(['sale_id', 'line_number']);
 
         $this->addBehavior('Timestamp');
-        
+
         $this->belongsTo('Sales', [
             'foreignKey' => 'sale_id',
             'joinType' => 'INNER',
@@ -69,12 +69,16 @@ class SaleLinesTable extends Table
     {
         $validator
             ->integer('product_id')
-            ->notEmptyString('product_id');
+            ->notEmptyString('product_id',"Product cannot be Empty");
 
         $validator
             ->integer('quantity')
             ->requirePresence('quantity', 'create')
-            ->notEmptyString('quantity');
+            ->notEmptyString('quantity',"Quantity cannot be Empty")
+            ->add('quantity', 'validQuantity', [
+                'rule' => ['custom', '/^\d$/'],
+                'message' => 'Quantity can only be numeric',
+            ]);
 
         return $validator;
     }

@@ -67,7 +67,7 @@ $prodJSON=json_encode($products)
                         '</select>'+
                     '</div></td>'+
                     '<td><div class="input text">'+
-                        '<label for="sale_lines.'+i+'.quantity">Quantity</label><input type="text" name="sale_lines['+i+'][quantity]" id="sale_lines.'+i+'.quantity">'+
+                        '<label for="sale_lines.'+i+'.quantity">Quantity</label><input type="text" name="sale_lines['+i+'][quantity]" id="sale_lines.'+i+'.quantity" value="1">'+
                     '</div></td>'+
                 '</tr>'
             );  

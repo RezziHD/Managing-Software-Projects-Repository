@@ -21,11 +21,11 @@ $slinesJSON = json_encode($sale->sale_lines);
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Html->link(__('List Sales'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(
+            <!--?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $sale->id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $sale->id), 'class' => 'side-nav-item']
-            ) ?>
+            ) ?-->
 
         </div>
     </aside>
