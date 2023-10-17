@@ -28,7 +28,7 @@
                 <tr>
                     <td><?= $this->Number->format($sale->id) ?></td>
                     <td><?= $sale->hasValue('member') ? $this->Html->link($sale->member->first_name, ['controller' => 'Members', 'action' => 'view', $sale->member->id]) : '' ?></td>
-                    <td><?= $sale->hasValue('staff') ? $this->Html->link($sale->staff->id, ['controller' => 'Staff', 'action' => 'view', $sale->staff->id]) : '' ?></td>
+                    <td><?= $sale->hasValue('staff') ? $this->Html->link($sale->staff->first_name, ['controller' => 'Staff', 'action' => 'view', $sale->staff->id]) : '' ?></td>
                     <td><?= h($sale->sale_date) ?></td>
                     <!--<td><?= h($sale->created) ?></td>
                     <td><?= h($sale->modified) ?></td>-->

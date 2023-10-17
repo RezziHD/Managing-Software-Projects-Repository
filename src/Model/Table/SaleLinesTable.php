@@ -48,10 +48,6 @@ class SaleLinesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Sales', [
-            'foreignKey' => 'sale_id',
-            'joinType' => 'INNER',
-        ]);
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id',
             'joinType' => 'INNER',

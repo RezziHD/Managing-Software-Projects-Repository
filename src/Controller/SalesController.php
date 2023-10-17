@@ -19,7 +19,7 @@ class SalesController extends AppController
     public function index()
     {
         $query = $this->Sales->find()
-            ->contain(['Members', 'Staff', 'SaleLines']);
+            ->contain(['Members', 'Staff', 'SaleLines.Products']);
         $sales = $this->paginate($query);
 
         $this->set(compact('sales'));
@@ -34,7 +34,7 @@ class SalesController extends AppController
      */
     public function view($id = null)
     {
-        $sale = $this->Sales->get($id, ['contain' => ['Members', 'Staff', 'SaleLines']]);
+        $sale = $this->Sales->get($id, ['contain' => ['Members', 'Staff', 'SaleLines.Products']]);
         $this->set(compact('sale'));
     }
 
@@ -47,7 +47,7 @@ class SalesController extends AppController
     {
         $sale = $this->Sales->newEmptyEntity();
         if ($this->request->is('post')) {
-            $sale = $this->Sales->patchEntity($sale, $this->request->getData(), ['associated' => 'SaleLines']);
+            $sale = $this->Sales->patchEntity($sale, $this->request->getData(), ['associated' => 'SaleLines.Products']);
             if ($this->Sales->save($sale)) {
                 $this->Flash->success(__('The sale has been saved.'));
 
@@ -70,7 +70,7 @@ class SalesController extends AppController
      */
     public function edit($id = null)
     {
-        $sale = $this->Sales->get($id, ['contain' => ['Members', 'Staff', 'SaleLines']]);
+        $sale = $this->Sales->get($id, ['contain' => ['Members', 'Staff', 'SaleLines.Products']]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $sale = $this->Sales->patchEntity($sale, $this->request->getData());
             if ($this->Sales->save($sale)) {

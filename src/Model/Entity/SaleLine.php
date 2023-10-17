@@ -38,4 +38,9 @@ class SaleLine extends Entity
         'product' => true,
         'line_number'=>true,
     ];
+    protected array $_virtual = ['line_price'];
+
+    protected function _getLinePrice(){
+        return ((float)$this->product->price) * $this->quantity;
+    }
 }

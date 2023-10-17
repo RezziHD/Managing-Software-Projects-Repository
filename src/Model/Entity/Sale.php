@@ -40,4 +40,14 @@ class Sale extends Entity
         'staff' => true,
         'sale_lines' => true,
     ];
+
+    protected array $_virtual = ['total_price'];
+
+    protected function _getTotalPrice(){
+        $sum=0;
+        foreach($this->sale_lines as $saleLine):
+            $sum+=$saleLine->get('line_price');
+        endforeach;
+        return $sum;
+    }
 }

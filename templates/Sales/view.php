@@ -2,8 +2,10 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Sale $sale
- * @var \Cake\Collection\CollectionInterface|string[] $products
  */
+
+use App\Model\Entity\Product;
+
 ?>
 <div class="row">
     <aside class="column">
@@ -50,17 +52,28 @@
                     <table>
                         <tr>
                             <th><?= __('Line Number') ?></th>
-                            <th><?= __('Product Id') ?></th>
+                            <th><?= __('Product') ?></th>
+                            <th><?= __('Unit Price') ?></th>
                             <th><?= __('Quantity') ?></th>
+                            <th><?= __('Price') ?></th>
                         </tr>
                         <?php foreach ($sale->sale_lines as $saleLines) : 
                             if($saleLines->sale_id==$sale->id):?>
                         <tr>
                             <td><?= h($saleLines->line_number) ?></td>
-                            <td><?= h($saleLines->product_id) ?></td>
+                            <td><?= h($saleLines->product->name) ?></td>
+                            <td>$ <?= h($saleLines->product->price) ?></td>
                             <td><?= h($saleLines->quantity) ?></td>
+                            <td>$ <?= h($saleLines->get('line_price')) ?></td>
                         </tr>
                         <?php endif; endforeach; ?>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><?= __('Total')  ?></td>
+                            <td>$ <?= h($sale->get('total_price')) ?></td>
+                        </tr>
                     </table>
                 </div>
                 <?php endif; ?>
