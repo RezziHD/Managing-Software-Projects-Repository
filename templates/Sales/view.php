@@ -36,14 +36,6 @@ use App\Model\Entity\Product;
                     <th><?= __('Sale Date') ?></th>
                     <td><?= h($sale->sale_date) ?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($sale->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($sale->modified) ?></td>
-                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Sale Lines') ?></h4>
