@@ -2,6 +2,7 @@
 
 1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
 2. Download https://www.7-zip.org/download.html and install
+3. Download Swiper: https://swiperjs.com/get-started
 
 ## Setup
 open C:\xampp\php\php.ini
@@ -51,7 +52,7 @@ framework by default. You can, however, replace it with any other library or
 custom styles.
 
 Steps for working:
-1. start apache 
+1. start apache
 2. open repo in vsc
 3. open terminal 'cls' to clear screen
 4. bin/cake server
