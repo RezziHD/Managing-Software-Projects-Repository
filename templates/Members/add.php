@@ -5,6 +5,12 @@
  * @var \App\Model\Entity\Member $member
  */
 ?>
+<style>
+    .error-message {
+        color: red;
+        padding-bottom: .5em;
+    }
+</style>
 <div class="row">
     <aside class="column">
         <div class="side-nav">

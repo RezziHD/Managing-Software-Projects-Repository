@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\Product $product
  */
 ?>
+<style>
+    .error-message {
+        color: red;
+        padding-bottom: .5em;
+    }
+</style>
 <div class="row">
     <aside class="column">
         <div class="side-nav">

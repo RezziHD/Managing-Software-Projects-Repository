@@ -9,6 +9,12 @@ use Cake\I18n\DateTime;
  */
 $prodJSON=json_encode($products)
 ?>
+<style>
+    .error-message {
+        color: red;
+        padding-bottom: .5em;
+    }
+</style>
 <div class="row">
     <aside class="column">
         <div class="side-nav">

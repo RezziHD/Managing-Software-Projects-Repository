@@ -6,6 +6,12 @@
  * @var string[]|\Cake\Collection\CollectionInterface $staff
  */
 ?>
+<style>
+    .error-message {
+        color: red;
+        padding-bottom: .5em;
+    }
+</style>
 <div class="row">
     <aside class="column">
         <div class="side-nav">

@@ -7,10 +7,6 @@
  */
 ?>
 <style>
-    .file {
-        border: none;
-    }
-
     .error-message {
         color: red;
         padding-bottom: .5em;
