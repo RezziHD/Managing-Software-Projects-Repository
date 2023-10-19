@@ -122,13 +122,7 @@ class StaffController extends AppController
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
         if ($result && $result->isValid()) {
-            // redirect to /articles after login success
-            $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'Pages',
-                'action' => 'display',
-            ]);
-
-            return $this->redirect($redirect);
+            return $this->redirect('/');
         }
         // display error if user submitted and authentication failed
         if ($this->request->is('post') && !$result->isValid()) {
