@@ -21,7 +21,7 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
-
+use Cake\Http\Client;
 /**
  * Static content controller
  *
@@ -60,7 +60,7 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
         $this->set(compact('page', 'subpage'));
-
+        $this->set('guest_token', $this->getGuestToken());
         try {
             return $this->render(implode('/', $path));
         } catch (MissingTemplateException $exception) {
@@ -69,5 +69,66 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+    }
+
+
+    private function getAccessToken()
+    {
+        $http = new Client();
+
+        $response = $http->post(
+            'http://localhost:8088/api/v1/security/login',
+            json_encode([
+                "password" => "admin",
+                "provider" => "db",
+                "refresh" => true,
+                "username" => "henry"
+            ]),
+            ['headers' => ['Content-Type' => 'application/json', 'accept' => 'application/json']]
+        );
+
+        if ($response->isOk()) {
+            $json = $response->getJson();
+            $access_token = $json['access_token'];
+            $refresh_token = $json['refresh_token'];
+
+            return $access_token;
+        }
+        return "bad request";
+    }
+    private function getGuestToken()
+    {
+        $http = new Client();
+        $payload = array(
+            "user" => array(
+                "username" => "admin",
+                "first_name" => "henry",
+                "last_name" => "ennis"
+            ),
+            "resources" => array(
+                array(
+                    "type" => "dashboard",
+                    "id" => "f528af56-f588-445f-9acf-7288b3f99252"
+                )
+            ),
+            "rls" => array()
+        );
+
+        $response = $http->post(
+            "http://localhost:8088/api/v1/security/guest_token/",
+            json_encode($payload),
+            [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer ' . $this->getAccessToken(),
+                ]
+            ]
+        );
+        if ($response) {
+            $json = $response->getJson();
+            $guest_token = $json;
+            return $guest_token["token"];
+        }
+        return "bad request";
     }
 }
