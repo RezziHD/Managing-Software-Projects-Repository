@@ -45,6 +45,7 @@ $Description = 'Go To Grocery';
             <?= $this->Html->link('Members', ['controller'=> 'Members', 'action' => 'index']) ?>
             <?= $this->Html->link('Staff', ['controller' => 'Staff', 'action' => 'index']) ?>
             <?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index']) ?>
+            <?= $this->Html->link('Logout', ['controller' => 'Staff', 'action' => 'logout']) ?>
         </div>
     </nav>
     <main class="main">
