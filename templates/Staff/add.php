@@ -85,7 +85,7 @@
                         <div class="column"><?= $this->Form->control('password') ?></div>
                     </div>
                     <div class="row">
-                        <div class="column"><label for="roles.0.id">Role</label>
+                        <div class="column">
                         <?= $this->Form->control('roles.0.id', ['label'=>'Role','type'=>'select','options' => $roles ]) ?>
                         </div>
                     </div>
