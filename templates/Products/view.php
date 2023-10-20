@@ -33,14 +33,6 @@
                     <th><?= __('Price') ?></th>
                     <td><?= $this->Number->format($product->price) ?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($product->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($product->modified) ?></td>
-                </tr>
             </table>
             <div class="text">
                 <strong><?= __('Description') ?></strong>
@@ -55,21 +47,12 @@
                     <table>
                         <tr>
                             <th><?= __('Sale Id') ?></th>
-                            <th><?= __('Line Number') ?></th>
-                            <th><?= __('Product Id') ?></th>
                             <th><?= __('Quantity') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($product->sale_lines as $saleLines) : ?>
                         <tr>
                             <td><?= h($saleLines->sale_id) ?></td>
-                            <td><?= h($saleLines->line_number) ?></td>
-                            <td><?= h($saleLines->product_id) ?></td>
                             <td><?= h($saleLines->quantity) ?></td>
-                            <td><?= h($saleLines->created) ?></td>
-                            <td><?= h($saleLines->modified) ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>

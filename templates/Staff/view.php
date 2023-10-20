@@ -50,14 +50,6 @@
                     <th><?= __('Email') ?></th>
                     <td><?= h($staff->email) ?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($staff->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($staff->modified) ?></td>
-                </tr>
             </table>
         </div>
     </div>

@@ -60,42 +60,7 @@
                     <th><?= __('Date Of Birth') ?></th>
                     <td><?= h($member->date_of_birth) ?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($member->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($member->modified) ?></td>
-                </tr>
             </table>
-            <div class="related">
-                <h4><?= __('Related Sales') ?></h4>
-                <?php if (!empty($member->sales)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Staff Id') ?></th>
-                            <th><?= __('Sale Date') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($member->sales as $sales) : ?>
-                        <tr>
-                            <td><?= h($sales->id) ?></td>
-                            <td><?= h($sales->staff_id) ?></td>
-                            <td><?= h($sales->sale_date) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Sales', 'action' => 'view', $sales->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Sales', 'action' => 'edit', $sales->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Sales', 'action' => 'delete', $sales->id], ['confirm' => __('Are you sure you want to delete # {0}?', $sales->id)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
-            </div>
         </div>
     </div>
 </div>

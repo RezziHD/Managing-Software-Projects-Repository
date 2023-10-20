@@ -60,7 +60,7 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
         $this->set(compact('page', 'subpage'));
-        $this->set('guest_token', $this->getGuestToken());
+       // $this->set('guest_token', $this->getGuestToken());
         try {
             return $this->render(implode('/', $path));
         } catch (MissingTemplateException $exception) {
@@ -72,7 +72,7 @@ class PagesController extends AppController
     }
 
 
-    private function getAccessToken()
+ /*   private function getAccessToken()
     {
         $http = new Client();
 
@@ -95,8 +95,8 @@ class PagesController extends AppController
             return $access_token;
         }
         return "bad request";
-    }
-    private function getGuestToken()
+    }*/
+ /*  private function getGuestToken()
     {
         $http = new Client();
         $payload = array(
@@ -130,5 +130,5 @@ class PagesController extends AppController
             return $guest_token["token"];
         }
         return "bad request";
-    }
+    }*/
 }
