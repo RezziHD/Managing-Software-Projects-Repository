@@ -1,7 +1,7 @@
 from faker import Faker
 import pymysql
 import random
-conn = pymysql.connect(host='localhost', port=3306 , user='my_app', passwd='Henni4henni4', db='goto_gro_database')
+conn = pymysql.connect(host='localhost', port=3306 , user='my_app', passwd='###', db='goto_gro_database')
 cursor = conn.cursor()
 
 fake = Faker()
