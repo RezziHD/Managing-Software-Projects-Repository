@@ -11,12 +11,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 class StaffFixture extends TestFixture
 {
     /**
-     * Table name
-     *
-     * @var string
-     */
-    public string $table = 'staff';
-    /**
      * Init method
      *
      * @return void
@@ -29,15 +23,15 @@ class StaffFixture extends TestFixture
                 'first_name' => 'Lorem ipsum dolor sit amet',
                 'middle_name' => 'Lorem ipsum dolor sit amet',
                 'last_name' => 'Lorem ipsum dolor sit amet',
-                'date_of_birth' => '2023-09-22',
+                'date_of_birth' => '2023-10-22',
                 'street' => 'Lorem ipsum dolor sit amet',
                 'city' => 'Lorem ipsum dolor sit amet',
                 'state' => '',
                 'zip' => '',
-                'password' => 'Lorem ipsum dolor sit amet',
-                'email' => 'Lorem ipsum dolor sit amet',
-                'created' => 1695368563,
-                'modified' => 1695368563,
+                'password' => '$2y$10$xMHuBVxBY5wOLIW.X8ugOeCMMEGyuS2LWMRqEg.mUS40XXDgTg20i',
+                'email' => 'ennisthomashenry@gmail.com',
+                'created' => 1697964401,
+                'modified' => 1697964401,
             ],
         ];
         parent::init();

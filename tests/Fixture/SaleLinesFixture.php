@@ -23,8 +23,8 @@ class SaleLinesFixture extends TestFixture
                 'line_number' => 1,
                 'product_id' => 1,
                 'quantity' => 1,
-                'created' => 1695369078,
-                'modified' => 1695369078,
+                'created' => 1697964401,
+                'modified' => 1697964401,
             ],
         ];
         parent::init();

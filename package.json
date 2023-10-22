@@ -1,0 +1,17 @@
+{
+  "name": "managing-software-projects-repository",
+  "version": "1.0.0",
+  "description": "1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`. 2. Download https://www.7-zip.org/download.html and install 3. Download Swiper: https://swiperjs.com/get-started",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/node": "^20.8.7"
+  }
+}

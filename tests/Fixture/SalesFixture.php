@@ -22,9 +22,9 @@ class SalesFixture extends TestFixture
                 'id' => 1,
                 'member_id' => 1,
                 'staff_id' => 1,
-                'sale_date' => '2023-09-22',
-                'created' => 1695369068,
-                'modified' => 1695369068,
+                'sale_date' => '2023-10-22',
+                'created' => 1697964401,
+                'modified' => 1697964401,
             ],
         ];
         parent::init();
