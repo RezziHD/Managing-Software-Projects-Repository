@@ -21,7 +21,7 @@ class MembersControllerTest extends TestCase
      *
      * @var array<string>
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.Members',
         'app.Sales',
     ];
@@ -34,7 +34,14 @@ class MembersControllerTest extends TestCase
      */
     public function testIndex(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        // Make a GET request to the index action
+        $this->get('/members');
+    
+        // Assert that the response was successful
+        $this->assertResponseOk();
+    
+        // Assert that the response contains the expected view variable
+        $this->assertResponseContains('members');
     }
 
     /**
